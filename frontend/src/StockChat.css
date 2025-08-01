@@ -168,3 +168,142 @@
   padding: 5px 10px;
   border-radius: 15px;
 }
+/* Stock Header Styling */
+.stock-header {
+  background: linear-gradient(135deg, #2196F3, #21CBF3);
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.stock-header h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+.price-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.current-price {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.price-change {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+.price-change.positive {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+}
+
+.price-change.negative {
+  background: rgba(244, 67, 54, 0.2);
+  color: #f44336;
+}
+
+/* Enhanced Scores */
+.scores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.score-item {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Technical Data */
+.technical-data {
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid #FF9800;
+}
+
+.indicators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.indicators span {
+  background: rgba(255, 152, 0, 0.1);
+  color: #FF9800;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+/* Loading Animation */
+.loading {
+  color: #666;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* Recommendation Colors */
+.recommendation.buy {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.recommendation.sell {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.recommendation.hold {
+  background: linear-gradient(135deg, #FF9800, #F57C00);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .price-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .scores {
+    grid-template-columns: 1fr;
+  }
+  
+  .indicators {
+    justify-content: center;
+  }
+}

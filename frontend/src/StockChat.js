@@ -4,7 +4,10 @@ import './StockChat.css';
 
 function StockChat() {
   const [messages, setMessages] = useState([
-    { text: "Hallo! Ik ben je AI aandelen adviseur. Vraag me of je een aandeel moet kopen of verkopen! Probeer bijvoorbeeld: 'Moet ik Apple kopen?'", isUser: false }
+    { 
+      text: "🚀 Hallo! Ik ben je AI aandelen adviseur met echte marktdata. Vraag me over aandelen zoals Apple, Microsoft, Tesla, Google, Amazon, en veel meer!", 
+      isUser: false 
+    }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +15,6 @@ function StockChat() {
   const sendMessage = async () => {
     if (!input.trim()) return;
 
-    // Voeg gebruiker bericht toe
     const userMessage = { text: input, isUser: true };
     setMessages(prev => [...prev, userMessage]);
     
@@ -21,7 +23,6 @@ function StockChat() {
     setIsLoading(true);
 
     try {
-      // Echte API call naar onze backend
       const response = await axios.post('http://localhost:3001/api/analyze', {
         question: userInput
       });
@@ -32,10 +33,17 @@ function StockChat() {
         text: data.answer,
         isUser: false,
         analysis: {
+          symbol: data.symbol,
+          name: data.name,
+          currentPrice: data.currentPrice,
+          priceChange: data.priceChange,
+          priceChangePercent: data.priceChangePercent,
           recommendation: data.recommendation,
           confidence: data.confidence,
           reasoning: data.reasoning,
-          scores: data.analysis
+          scores: data.analysis,
+          technicalData: data.technicalData,
+          fundamentalData: data.fundamentalData
         }
       };
       
@@ -44,7 +52,7 @@ function StockChat() {
     } catch (error) {
       console.error('Error:', error);
       setMessages(prev => [...prev, { 
-        text: "Sorry, er ging iets mis met de analyse. Zorg ervoor dat de backend server draait!", 
+        text: "Sorry, er ging iets mis met de analyse. Zorg ervoor dat de backend server draait en probeer een bekend aandeel zoals AAPL, MSFT, of TSLA.", 
         isUser: false 
       }]);
     } finally {
@@ -52,11 +60,21 @@ function StockChat() {
     }
   };
 
+  const formatPrice = (price) => {
+    return price ? `$${price.toFixed(2)}` : 'N/A';
+  };
+
+  const formatPercent = (percent) => {
+    if (!percent) return 'N/A';
+    const sign = percent > 0 ? '+' : '';
+    return `${sign}${percent.toFixed(2)}%`;
+  };
+
   return (
     <div className="chat-container">
       <div className="chat-header">
-        <h1>🤖 Aandelen AI Adviseur</h1>
-        <p>Vraag me advies over aandelen zoals Apple, Microsoft, Tesla, etc.</p>
+        <h1>🤖 AI Aandelen Adviseur</h1>
+        <p>💹 Met echte marktdata van Yahoo Finance</p>
       </div>
       
       <div className="messages">
@@ -64,17 +82,34 @@ function StockChat() {
           <div key={index} className={`message ${message.isUser ? 'user' : 'ai'}`}>
             <div className="message-content">
               {message.text}
+              
               {message.analysis && (
                 <div className="analysis">
+                  {/* Stock Header */}
+                  {message.analysis.name && (
+                    <div className="stock-header">
+                      <h3>{message.analysis.name} ({message.analysis.symbol})</h3>
+                      <div className="price-info">
+                        <span className="current-price">{formatPrice(message.analysis.currentPrice)}</span>
+                        <span className={`price-change ${message.analysis.priceChange >= 0 ? 'positive' : 'negative'}`}>
+                          {formatPrice(message.analysis.priceChange)} ({formatPercent(message.analysis.priceChangePercent)})
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Recommendation */}
                   <div className={`recommendation ${message.analysis.recommendation.toLowerCase()}`}>
                     📊 {message.analysis.recommendation}
                   </div>
                   <div className="confidence">
                     🎯 Zekerheid: {message.analysis.confidence}%
                   </div>
+
+                  {/* Reasoning */}
                   {message.analysis.reasoning && (
                     <div className="reasoning">
-                      <strong>Redenen:</strong>
+                      <strong>📋 Analyse:</strong>
                       <ul>
                         {message.analysis.reasoning.map((reason, i) => (
                           <li key={i}>{reason}</li>
@@ -82,11 +117,37 @@ function StockChat() {
                       </ul>
                     </div>
                   )}
+
+                  {/* Scores */}
                   {message.analysis.scores && (
                     <div className="scores">
-                      <div>📈 Fundamenteel: {message.analysis.scores.fundamental_score}/100</div>
-                      <div>📊 Technisch: {message.analysis.scores.technical_score}/100</div>
-                      <div>💭 Sentiment: {message.analysis.scores.sentiment_score}/100</div>
+                      <div className="score-item">
+                        📈 Fundamenteel: {message.analysis.scores.fundamental_score}/100
+                      </div>
+                      <div className="score-item">
+                        📊 Technisch: {message.analysis.scores.technical_score}/100
+                      </div>
+                      <div className="score-item">
+                        🎯 Totaal: {message.analysis.scores.overall_score}/100
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Technical Data */}
+                  {message.analysis.technicalData && Object.keys(message.analysis.technicalData).length > 0 && (
+                    <div className="technical-data">
+                      <strong>📊 Technische Indicatoren:</strong>
+                      <div className="indicators">
+                        {message.analysis.technicalData.rsi && (
+                          <span>RSI: {message.analysis.technicalData.rsi}</span>
+                        )}
+                        {message.analysis.technicalData.trend && (
+                          <span>Trend: {message.analysis.technicalData.trend.replace('_', ' ')}</span>
+                        )}
+                        {message.analysis.technicalData.sma20 && (
+                          <span>SMA20: ${parseFloat(message.analysis.technicalData.sma20).toFixed(2)}</span>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -94,10 +155,15 @@ function StockChat() {
             </div>
           </div>
         ))}
+        
         {isLoading && (
           <div className="message ai">
             <div className="message-content">
-              <div className="loading">🔍 Analyseren van aandelen data...</div>
+              <div className="loading">
+                🔍 Ophalen van real-time marktdata...<br/>
+                📊 Uitvoeren van technische analyse...<br/>
+                🤖 AI maakt beslissing...
+              </div>
             </div>
           </div>
         )}
@@ -109,7 +175,7 @@ function StockChat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-          placeholder="Bijv: 'Moet ik Apple aandelen kopen?'"
+          placeholder="Bijv: 'Moet ik Tesla kopen?' of 'Hoe staat Apple ervoor?'"
           disabled={isLoading}
         />
         <button onClick={sendMessage} disabled={isLoading || !input.trim()}>

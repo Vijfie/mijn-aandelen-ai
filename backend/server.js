@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const axios = require('axios');
+const stockService = require('./stockService');
+const analysisEngine = require('./analysisEngine');
 
 const app = express();
 const PORT = 3001;
@@ -11,105 +12,124 @@ app.use(express.json());
 
 // Test route
 app.get('/', (req, res) => {
-  res.json({ message: 'Aandelen AI Backend is online!' });
+  res.json({ message: 'Aandelen AI Backend is online met echte data!' });
 });
 
-// Aandeel analyse route (nog simpel)
+// Nieuwe analyse route met echte data
 app.post('/api/analyze', async (req, res) => {
   try {
     const { question } = req.body;
     
-    // Extract aandeel symbool uit de vraag (simpele versie)
+    // Extract aandeel symbool uit de vraag
     const symbol = extractStockSymbol(question);
     
     if (!symbol) {
       return res.json({
-        answer: "Ik kon geen aandeel herkennen in je vraag. Probeer iets zoals 'Moet ik Apple (AAPL) kopen?'",
+        answer: "Ik kon geen aandeel herkennen in je vraag. Probeer iets zoals 'Moet ik Apple (AAPL) kopen?' of gebruik symbolen zoals MSFT, GOOGL, TSLA.",
         recommendation: "HOLD",
-        confidence: 0
+        confidence: 0,
+        error: "Geen aandeel gevonden"
       });
     }
 
-    // Voor nu een simpele fake analyse
-    // Later maken we dit echt
-    const analysis = await performSimpleAnalysis(symbol);
-    
-    res.json(analysis);
+    console.log(`Analyseren van ${symbol}...`);
+
+    // Haal echte data op
+    const stockInfo = await stockService.getStockInfo(symbol);
+    const historicalData = await stockService.getHistoricalData(symbol, '3mo');
+    const technicalIndicators = stockService.calculateTechnicalIndicators(historicalData);
+
+    // Voer analyse uit
+    const analysis = await analysisEngine.analyzeStock(stockInfo, historicalData, technicalIndicators);
+
+    // Format response
+    const response = {
+      answer: `Analyse van ${analysis.name} (${analysis.symbol}):`,
+      symbol: analysis.symbol,
+      name: analysis.name,
+      currentPrice: analysis.currentPrice,
+      priceChange: analysis.priceChange,
+      priceChangePercent: analysis.priceChangePercent,
+      recommendation: analysis.recommendation,
+      confidence: analysis.confidence,
+      reasoning: analysis.reasoning,
+      analysis: {
+        fundamental_score: Math.round(analysis.fundamental.score),
+        technical_score: Math.round(analysis.technical.score),
+        overall_score: Math.round(analysis.overall.score)
+      },
+      technicalData: analysis.technical.signals,
+      fundamentalData: analysis.fundamental.metrics
+    };
+
+    res.json(response);
     
   } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: 'Er ging iets mis met de analyse' });
+    console.error('Analysis error:', error);
+    res.status(500).json({ 
+      error: 'Er ging iets mis met de analyse',
+      message: error.message,
+      answer: "Sorry, ik kon de analyse niet uitvoeren. Controleer of het aandeel symbool correct is."
+    });
   }
 });
 
-// Hulp functie om aandeel symbool te vinden
+// Route voor aandeel info (bonus)
+app.get('/api/stock/:symbol', async (req, res) => {
+  try {
+    const symbol = req.params.symbol.toUpperCase();
+    const stockInfo = await stockService.getStockInfo(symbol);
+    res.json(stockInfo);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Hulp functie om aandeel symbool te vinden (uitgebreid)
 function extractStockSymbol(text) {
   const upperText = text.toUpperCase();
   
-  // Simpele matching voor bekende aandelen
+  // Uitgebreide lijst van aandelen
   const stocks = {
-    'APPLE': 'AAPL',
-    'AAPL': 'AAPL',
-    'MICROSOFT': 'MSFT',
-    'MSFT': 'MSFT',
-    'GOOGLE': 'GOOGL',
-    'GOOGL': 'GOOGL',
-    'TESLA': 'TSLA',
-    'TSLA': 'TSLA',
-    'AMAZON': 'AMZN',
-    'AMZN': 'AMZN'
+    // Tech
+    'APPLE': 'AAPL', 'AAPL': 'AAPL',
+    'MICROSOFT': 'MSFT', 'MSFT': 'MSFT',
+    'GOOGLE': 'GOOGL', 'GOOGL': 'GOOGL', 'ALPHABET': 'GOOGL',
+    'TESLA': 'TSLA', 'TSLA': 'TSLA',
+    'AMAZON': 'AMZN', 'AMZN': 'AMZN',
+    'META': 'META', 'FACEBOOK': 'META',
+    'NVIDIA': 'NVDA', 'NVDA': 'NVDA',
+    'NETFLIX': 'NFLX', 'NFLX': 'NFLX',
+    
+    // Finance
+    'BERKSHIRE': 'BRK-B', 'BERKSHIRE HATHAWAY': 'BRK-B',
+    'JPM': 'JPM', 'JPMORGAN': 'JPM',
+    'VISA': 'V',
+    
+    // Other popular
+    'COCA COLA': 'KO', 'COKE': 'KO', 'KO': 'KO',
+    'DISNEY': 'DIS', 'DIS': 'DIS',
+    'WALMART': 'WMT', 'WMT': 'WMT',
+    'MCDONALDS': 'MCD', 'MCD': 'MCD'
   };
   
+  // Zoek naar bekende namen/symbolen
   for (let [name, symbol] of Object.entries(stocks)) {
     if (upperText.includes(name)) {
       return symbol;
     }
   }
   
+  // Zoek naar mogelijke symbolen (2-5 hoofdletters)
+  const symbolMatch = upperText.match(/\b[A-Z]{2,5}\b/);
+  if (symbolMatch) {
+    return symbolMatch[0];
+  }
+  
   return null;
 }
 
-// Simpele analyse functie (later maken we deze echt)
-async function performSimpleAnalysis(symbol) {
-  // Voor nu genereren we random maar realistische data
-  const recommendations = ['BUY', 'SELL', 'HOLD'];
-  const recommendation = recommendations[Math.floor(Math.random() * 3)];
-  const confidence = Math.floor(Math.random() * 40) + 60; // 60-100%
-  
-  const reasons = {
-    'BUY': [
-      'Sterke fundamentele groei verwacht',
-      'Technische indicatoren zijn positief',
-      'Ondergewaardeerd ten opzichte van sector'
-    ],
-    'SELL': [
-      'Hoge waardering voor huidige prestaties',
-      'Technische indicatoren tonen zwakte',
-      'Sector headwinds verwacht'
-    ],
-    'HOLD': [
-      'Gemixte signalen in de analyse',
-      'Afwachten van komende earnings',
-      'Neutrale markt sentiment'
-    ]
-  };
-  
-  const reasoning = reasons[recommendation];
-  
-  return {
-    symbol: symbol,
-    answer: `Op basis van mijn analyse van ${symbol}:`,
-    recommendation: recommendation,
-    confidence: confidence,
-    reasoning: reasoning,
-    analysis: {
-      fundamental_score: Math.floor(Math.random() * 40) + 60,
-      technical_score: Math.floor(Math.random() * 40) + 60,
-      sentiment_score: Math.floor(Math.random() * 40) + 60
-    }
-  };
-}
-
 app.listen(PORT, () => {
-  console.log(`Server draait op http://localhost:${PORT}`);
+  console.log(`🚀 Server draait op http://localhost:${PORT}`);
+  console.log('💹 Echte aandelendata is nu beschikbaar!');
 });
