@@ -1,0 +1,613 @@
+{
+  "predictions": [
+    {
+      "id": "1754059224103",
+      "timestamp": "2025-08-01T14:40:24.103Z",
+      "symbol": "AAPL",
+      "recommendation": "HOLD",
+      "confidence": 42,
+      "price": 204.4244,
+      "reasoning": [
+        "Hoge P/E ratio (31.1) kan overgewaardeerd betekenen",
+        "Positieve prijstrend",
+        "Positief nieuws sentiment (70%) is gunstig"
+      ],
+      "technicalScore": 58,
+      "fundamentalScore": 40,
+      "newsScore": 70,
+      "overallScore": 56,
+      "evaluationDate": "2025-08-08T14:40:24.103Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754059669956",
+      "timestamp": "2025-08-01T14:47:49.956Z",
+      "symbol": "GOOGL",
+      "recommendation": "BUY",
+      "confidence": 49,
+      "price": 189.3,
+      "reasoning": [
+        "Sterke opwaartse trend gedetecteerd",
+        "Zeer positief nieuws sentiment (80%) ondersteunt bullish outlook"
+      ],
+      "technicalScore": 65,
+      "fundamentalScore": 50,
+      "newsScore": 80,
+      "overallScore": 65,
+      "evaluationDate": "2025-08-08T14:47:49.956Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754059822425",
+      "timestamp": "2025-08-01T14:50:22.425Z",
+      "symbol": "GOOGL",
+      "recommendation": "BUY",
+      "confidence": 49,
+      "price": 189.1634,
+      "reasoning": [
+        "Sterke opwaartse trend gedetecteerd",
+        "Zeer positief nieuws sentiment (80%) ondersteunt bullish outlook"
+      ],
+      "technicalScore": 65,
+      "fundamentalScore": 50,
+      "newsScore": 80,
+      "overallScore": 65,
+      "evaluationDate": "2025-08-08T14:50:22.425Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754059977300",
+      "timestamp": "2025-08-01T14:52:57.300Z",
+      "symbol": "AAPL",
+      "recommendation": "SELL",
+      "confidence": 36,
+      "price": 204.25,
+      "reasoning": [
+        "Hoge P/E ratio (31.0) kan overgewaardeerd betekenen",
+        "Positieve prijstrend",
+        "Neutraal nieuws sentiment (60%)"
+      ],
+      "technicalScore": 58,
+      "fundamentalScore": 40,
+      "newsScore": 60,
+      "overallScore": 53,
+      "evaluationDate": "2025-08-08T14:52:57.300Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754060446779",
+      "timestamp": "2025-08-01T15:00:46.779Z",
+      "symbol": "AAPL",
+      "recommendation": "HOLD",
+      "confidence": 42,
+      "price": 203.885,
+      "reasoning": [
+        "Hoge P/E ratio (31.0) kan overgewaardeerd betekenen",
+        "Positieve prijstrend",
+        "Positief nieuws sentiment (70%) is gunstig"
+      ],
+      "technicalScore": 58,
+      "fundamentalScore": 40,
+      "newsScore": 70,
+      "overallScore": 56,
+      "evaluationDate": "2025-08-08T15:00:46.779Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754060467773",
+      "timestamp": "2025-08-01T15:01:07.773Z",
+      "symbol": "TSLA",
+      "recommendation": "SELL",
+      "confidence": 36,
+      "price": 304.138,
+      "reasoning": [
+        "Hoge P/E ratio (183.2) kan overgewaardeerd betekenen",
+        "Sterke opwaartse trend gedetecteerd",
+        "Neutraal nieuws sentiment (49%)"
+      ],
+      "technicalScore": 65,
+      "fundamentalScore": 40,
+      "newsScore": 49,
+      "overallScore": 53,
+      "evaluationDate": "2025-08-08T15:01:07.773Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754061106464",
+      "timestamp": "2025-08-01T15:11:46.464Z",
+      "symbol": "AAPL",
+      "recommendation": "SELL",
+      "confidence": 36,
+      "price": 204.52,
+      "reasoning": [
+        "Hoge P/E ratio (31.1) kan overgewaardeerd betekenen",
+        "Positieve prijstrend",
+        "Neutraal nieuws sentiment (60%)"
+      ],
+      "technicalScore": 58,
+      "fundamentalScore": 40,
+      "newsScore": 60,
+      "overallScore": 53,
+      "evaluationDate": "2025-08-08T15:11:46.464Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754062111961",
+      "timestamp": "2025-08-01T15:28:31.961Z",
+      "symbol": "MSFT",
+      "recommendation": "SELL",
+      "confidence": 36,
+      "price": 523.85,
+      "reasoning": [
+        "Hoge P/E ratio (38.3) kan overgewaardeerd betekenen",
+        "Sterke opwaartse trend gedetecteerd",
+        "Neutraal nieuws sentiment (50%)"
+      ],
+      "technicalScore": 65,
+      "fundamentalScore": 40,
+      "newsScore": 50,
+      "overallScore": 53,
+      "evaluationDate": "2025-08-08T15:28:31.961Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754062480408",
+      "timestamp": "2025-08-01T15:34:40.408Z",
+      "symbol": "AAPL",
+      "recommendation": "SELL",
+      "confidence": 45,
+      "price": 203.4,
+      "reasoning": [
+        "Hoge P/E ratio (30.9) kan overgewaardeerd betekenen",
+        "Dagelijks verlies van -2.01%",
+        "Neutrale markttrend",
+        "Neutraal nieuws sentiment (40%)"
+      ],
+      "technicalScore": 50,
+      "fundamentalScore": 30,
+      "newsScore": 40,
+      "overallScore": 41,
+      "evaluationDate": "2025-08-08T15:34:40.408Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754062588864",
+      "timestamp": "2025-08-01T15:36:28.864Z",
+      "symbol": "AAPL",
+      "recommendation": "SELL",
+      "confidence": 43,
+      "price": 203.52,
+      "reasoning": [
+        "Hoge P/E ratio (30.9) kan overgewaardeerd betekenen",
+        "Neutrale markttrend",
+        "Neutraal nieuws sentiment (40%)"
+      ],
+      "technicalScore": 50,
+      "fundamentalScore": 40,
+      "newsScore": 40,
+      "overallScore": 44,
+      "evaluationDate": "2025-08-08T15:36:28.864Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754062762327",
+      "timestamp": "2025-08-01T15:39:22.327Z",
+      "symbol": "MSFT",
+      "recommendation": "SELL",
+      "confidence": 39,
+      "price": 523.475,
+      "reasoning": [
+        "Hoge P/E ratio (38.3) kan overgewaardeerd betekenen",
+        "Sterke opwaartse trend gedetecteerd",
+        "Neutraal nieuws sentiment (40%)"
+      ],
+      "technicalScore": 65,
+      "fundamentalScore": 40,
+      "newsScore": 40,
+      "overallScore": 50,
+      "evaluationDate": "2025-08-08T15:39:22.327Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754062769988",
+      "timestamp": "2025-08-01T15:39:29.988Z",
+      "symbol": "AMZ",
+      "recommendation": "HOLD",
+      "confidence": 42,
+      "price": 0,
+      "reasoning": [
+        "Positieve prijstrend",
+        "Neutraal nieuws sentiment (58%)",
+        "🤖 AI track record: 0.0% accuracy over 11 voorspellingen"
+      ],
+      "technicalScore": 58,
+      "fundamentalScore": 50,
+      "newsScore": 58,
+      "overallScore": 56,
+      "evaluationDate": "2025-08-08T15:39:29.988Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754062776733",
+      "timestamp": "2025-08-01T15:39:36.733Z",
+      "symbol": "AMZN",
+      "recommendation": "SELL",
+      "confidence": 42,
+      "price": 215.535,
+      "reasoning": [
+        "Hoge P/E ratio (32.9) kan overgewaardeerd betekenen",
+        "Dagelijks verlies van -7.93%",
+        "Sterke opwaartse trend gedetecteerd",
+        "Negatief nieuws sentiment (34%) creëert zorgen",
+        "🤖 AI track record: 0.0% accuracy over 12 voorspellingen"
+      ],
+      "technicalScore": 65,
+      "fundamentalScore": 30,
+      "newsScore": 34,
+      "overallScore": 45,
+      "evaluationDate": "2025-08-08T15:39:36.733Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754062783718",
+      "timestamp": "2025-08-01T15:39:43.718Z",
+      "symbol": "GOOGL",
+      "recommendation": "HOLD",
+      "confidence": 42,
+      "price": 189.1,
+      "reasoning": [
+        "Sterke opwaartse trend gedetecteerd",
+        "Neutraal nieuws sentiment (60%)",
+        "🤖 AI track record: 0.0% accuracy over 13 voorspellingen"
+      ],
+      "technicalScore": 65,
+      "fundamentalScore": 50,
+      "newsScore": 60,
+      "overallScore": 59,
+      "evaluationDate": "2025-08-08T15:39:43.718Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754062790608",
+      "timestamp": "2025-08-01T15:39:50.608Z",
+      "symbol": "TSLA",
+      "recommendation": "SELL",
+      "confidence": 36,
+      "price": 307.335,
+      "reasoning": [
+        "Hoge P/E ratio (185.1) kan overgewaardeerd betekenen",
+        "Sterke opwaartse trend gedetecteerd",
+        "Neutraal nieuws sentiment (50%)",
+        "🤖 AI track record: 0.0% accuracy over 14 voorspellingen"
+      ],
+      "technicalScore": 65,
+      "fundamentalScore": 40,
+      "newsScore": 50,
+      "overallScore": 53,
+      "evaluationDate": "2025-08-08T15:39:50.608Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754062797641",
+      "timestamp": "2025-08-01T15:39:57.641Z",
+      "symbol": "META",
+      "recommendation": "SELL",
+      "confidence": 39,
+      "price": 755.89,
+      "reasoning": [
+        "Dagelijks verlies van -2.27%",
+        "Positieve prijstrend",
+        "Neutraal nieuws sentiment (50%)",
+        "🤖 AI track record: 0.0% accuracy over 15 voorspellingen"
+      ],
+      "technicalScore": 58,
+      "fundamentalScore": 40,
+      "newsScore": 50,
+      "overallScore": 50,
+      "evaluationDate": "2025-08-08T15:39:57.641Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754062804492",
+      "timestamp": "2025-08-01T15:40:04.492Z",
+      "symbol": "NFLX",
+      "recommendation": "SELL",
+      "confidence": 41,
+      "price": 1165.065,
+      "reasoning": [
+        "Hoge P/E ratio (49.7) kan overgewaardeerd betekenen",
+        "Sterke neerwaartse trend",
+        "Positief nieuws sentiment (70%) is gunstig",
+        "🤖 AI track record: 0.0% accuracy over 16 voorspellingen"
+      ],
+      "technicalScore": 35,
+      "fundamentalScore": 40,
+      "newsScore": 70,
+      "overallScore": 47,
+      "evaluationDate": "2025-08-08T15:40:04.492Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754062811236",
+      "timestamp": "2025-08-01T15:40:11.236Z",
+      "symbol": "AMD",
+      "recommendation": "SELL",
+      "confidence": 43,
+      "price": 171.93,
+      "reasoning": [
+        "Hoge P/E ratio (124.6) kan overgewaardeerd betekenen",
+        "Dagelijks verlies van -2.48%",
+        "RSI van 72.5 toont overbought conditie",
+        "Sterke opwaartse trend gedetecteerd",
+        "Neutraal nieuws sentiment (49%)",
+        "🤖 AI track record: 0.0% accuracy over 17 voorspellingen"
+      ],
+      "technicalScore": 50,
+      "fundamentalScore": 30,
+      "newsScore": 49,
+      "overallScore": 44,
+      "evaluationDate": "2025-08-08T15:40:11.236Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754062822409",
+      "timestamp": "2025-08-01T15:40:22.409Z",
+      "symbol": "NVDA",
+      "recommendation": "SELL",
+      "confidence": 36,
+      "price": 175.395,
+      "reasoning": [
+        "Hoge P/E ratio (56.8) kan overgewaardeerd betekenen",
+        "Sterke opwaartse trend gedetecteerd",
+        "Neutraal nieuws sentiment (50%)",
+        "🤖 AI track record: 0.0% accuracy over 18 voorspellingen"
+      ],
+      "technicalScore": 65,
+      "fundamentalScore": 40,
+      "newsScore": 50,
+      "overallScore": 53,
+      "evaluationDate": "2025-08-08T15:40:22.409Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754062980215",
+      "timestamp": "2025-08-01T15:43:00.215Z",
+      "symbol": "NOKIA",
+      "recommendation": "SELL",
+      "confidence": 41,
+      "price": 254.4045296912361,
+      "reasoning": [
+        "Sterke neerwaartse trend",
+        "Neutraal nieuws sentiment (60%)",
+        "🤖 AI track record: 0.0% accuracy over 19 voorspellingen"
+      ],
+      "technicalScore": 35,
+      "fundamentalScore": 50,
+      "newsScore": 60,
+      "overallScore": 47,
+      "evaluationDate": "2025-08-08T15:43:00.215Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754063026681",
+      "timestamp": "2025-08-01T15:43:46.681Z",
+      "symbol": "AOC",
+      "recommendation": "SELL",
+      "confidence": 37,
+      "price": 0,
+      "reasoning": [
+        "Neutrale markttrend",
+        "Neutraal nieuws sentiment (56%)",
+        "🤖 AI track record: 0.0% accuracy over 20 voorspellingen"
+      ],
+      "technicalScore": 50,
+      "fundamentalScore": 50,
+      "newsScore": 56,
+      "overallScore": 52,
+      "evaluationDate": "2025-08-08T15:43:46.681Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754063042060",
+      "timestamp": "2025-08-01T15:44:02.060Z",
+      "symbol": "INTC",
+      "recommendation": "SELL",
+      "confidence": 39,
+      "price": 19.32,
+      "reasoning": [
+        "Dagelijks verlies van -2.42%",
+        "RSI van 28.8 toont oversold conditie (koop kans)",
+        "Sterke neerwaartse trend",
+        "Neutraal nieuws sentiment (50%)",
+        "🤖 AI track record: 0.0% accuracy over 21 voorspellingen"
+      ],
+      "technicalScore": 55,
+      "fundamentalScore": 40,
+      "newsScore": 50,
+      "overallScore": 49,
+      "evaluationDate": "2025-08-08T15:44:02.060Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754063100625",
+      "timestamp": "2025-08-01T15:45:00.625Z",
+      "symbol": "PYPL",
+      "recommendation": "HOLD",
+      "confidence": 45,
+      "price": 67.43,
+      "reasoning": [
+        "Lage P/E ratio (14.4) suggereert ondergewaardeerd",
+        "Neutrale markttrend",
+        "Zeer positief nieuws sentiment (80%) ondersteunt bullish outlook",
+        "🤖 AI track record: 0.0% accuracy over 22 voorspellingen"
+      ],
+      "technicalScore": 50,
+      "fundamentalScore": 65,
+      "newsScore": 80,
+      "overallScore": 64,
+      "evaluationDate": "2025-08-08T15:45:00.625Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754063125368",
+      "timestamp": "2025-08-01T15:45:25.368Z",
+      "symbol": "ADBE",
+      "recommendation": "HOLD",
+      "confidence": 43,
+      "price": 351.515,
+      "reasoning": [
+        "RSI van 23.2 toont oversold conditie (koop kans)",
+        "Negatieve prijstrend",
+        "Positief nieuws sentiment (70%) is gunstig",
+        "🤖 AI track record: 0.0% accuracy over 23 voorspellingen"
+      ],
+      "technicalScore": 62,
+      "fundamentalScore": 50,
+      "newsScore": 70,
+      "overallScore": 61,
+      "evaluationDate": "2025-08-08T15:45:25.368Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754063135594",
+      "timestamp": "2025-08-01T15:45:35.594Z",
+      "symbol": "SBUX",
+      "recommendation": "HOLD",
+      "confidence": 42,
+      "price": 86.18,
+      "reasoning": [
+        "Hoge P/E ratio (37.3) kan overgewaardeerd betekenen",
+        "Dagelijks verlies van -3.34%",
+        "RSI van 26.8 toont oversold conditie (koop kans)",
+        "Negatieve prijstrend",
+        "Zeer positief nieuws sentiment (74%) ondersteunt bullish outlook",
+        "🤖 AI track record: 0.0% accuracy over 24 voorspellingen"
+      ],
+      "technicalScore": 62,
+      "fundamentalScore": 30,
+      "newsScore": 74,
+      "overallScore": 56,
+      "evaluationDate": "2025-08-08T15:45:35.594Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754063142866",
+      "timestamp": "2025-08-01T15:45:42.866Z",
+      "symbol": "ZM",
+      "recommendation": "HOLD",
+      "confidence": 42,
+      "price": 71.57,
+      "reasoning": [
+        "Dagelijks verlies van -3.35%",
+        "RSI van 27.9 toont oversold conditie (koop kans)",
+        "Negatieve prijstrend",
+        "Neutraal nieuws sentiment (60%)",
+        "🤖 AI track record: 0.0% accuracy over 25 voorspellingen"
+      ],
+      "technicalScore": 62,
+      "fundamentalScore": 40,
+      "newsScore": 60,
+      "overallScore": 55,
+      "evaluationDate": "2025-08-08T15:45:42.866Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754063153792",
+      "timestamp": "2025-08-01T15:45:53.792Z",
+      "symbol": "CSCO",
+      "recommendation": "SELL",
+      "confidence": 36,
+      "price": 67.2173,
+      "reasoning": [
+        "Neutrale markttrend",
+        "Positief nieuws sentiment (64%) is gunstig",
+        "🤖 AI track record: 0.0% accuracy over 26 voorspellingen"
+      ],
+      "technicalScore": 50,
+      "fundamentalScore": 50,
+      "newsScore": 64,
+      "overallScore": 54,
+      "evaluationDate": "2025-08-08T15:45:53.792Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754319893312",
+      "timestamp": "2025-08-04T15:04:53.312Z",
+      "symbol": "AAPL",
+      "recommendation": "HOLD",
+      "confidence": 42,
+      "price": 207.19,
+      "reasoning": [
+        "Hoge P/E ratio (31.4) kan overgewaardeerd betekenen",
+        "Sterke dagelijkse winst van 2.38%",
+        "Neutrale markttrend",
+        "Positief nieuws sentiment (70%) is gunstig",
+        "🤖 AI track record: 0.0% accuracy over 27 voorspellingen"
+      ],
+      "technicalScore": 50,
+      "fundamentalScore": 50,
+      "newsScore": 70,
+      "overallScore": 56,
+      "evaluationDate": "2025-08-11T15:04:53.312Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754320119435",
+      "timestamp": "2025-08-04T15:08:39.435Z",
+      "symbol": "AAPL",
+      "recommendation": "HOLD",
+      "confidence": 42,
+      "price": 206.74,
+      "reasoning": [
+        "Hoge P/E ratio (31.3) kan overgewaardeerd betekenen",
+        "Sterke dagelijkse winst van 2.15%",
+        "Neutrale markttrend",
+        "Positief nieuws sentiment (70%) is gunstig",
+        "🤖 AI track record: 0.0% accuracy over 28 voorspellingen"
+      ],
+      "technicalScore": 50,
+      "fundamentalScore": 50,
+      "newsScore": 70,
+      "overallScore": 56,
+      "evaluationDate": "2025-08-11T15:08:39.435Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    }
+  ],
+  "performance": {
+    "totalPredictions": 29,
+    "correctPredictions": 0,
+    "accuracy": 0,
+    "confidenceCalibration": 0.7,
+    "stockPerformance": {}
+  },
+  "learningHistory": []
+}

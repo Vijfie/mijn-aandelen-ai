@@ -1,0 +1,608 @@
+/* Complete MLDashboard.css - Machine Learning Dashboard Styles */
+
+.ml-dashboard {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 25px;
+  padding: 35px;
+  margin: 25px 0;
+  color: white;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.ml-dashboard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  pointer-events: none;
+}
+
+.ml-dashboard > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header Styles */
+.ml-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ml-header h2 {
+  margin: 0 0 15px 0;
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.ml-header p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Performance Metrics Grid */
+.ml-performance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.ml-metric-card {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 30px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.ml-metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.ml-metric-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.ml-metric-card:hover::before {
+  left: 100%;
+}
+
+/* Specific Card Styles */
+.ml-metric-card.accuracy {
+  border-left: 4px solid #00d4aa;
+}
+
+.ml-metric-card.predictions {
+  border-left: 4px solid #3498db;
+}
+
+.ml-metric-card.confidence {
+  border-left: 4px solid #f39c12;
+}
+
+.ml-metric-card.status {
+  border-left: 4px solid #e74c3c;
+}
+
+.metric-icon {
+  font-size: 40px;
+  opacity: 0.9;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.metric-content {
+  flex: 1;
+}
+
+.metric-value {
+  font-size: 36px;
+  font-weight: 900;
+  margin-bottom: 8px;
+  line-height: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.metric-label {
+  font-size: 16px;
+  font-weight: 700;
+  opacity: 0.95;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.metric-subtitle {
+  font-size: 13px;
+  opacity: 0.75;
+  font-style: italic;
+  line-height: 1.3;
+}
+
+/* Loading and Empty States */
+.ml-loading, .ml-empty {
+  text-align: center;
+  padding: 80px 30px;
+  font-size: 20px;
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ml-loading {
+  animation: breathe 2s infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.6; }
+}
+
+/* Recent Predictions Section */
+.ml-recent-predictions {
+  margin-bottom: 40px;
+}
+
+.ml-recent-predictions h3 {
+  margin: 0 0 25px 0;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.predictions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.prediction-item {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.prediction-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #3498db, #2ecc71);
+  transition: width 0.3s ease;
+}
+
+.prediction-item:hover {
+  transform: translateX(5px);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.prediction-item:hover::before {
+  width: 8px;
+}
+
+/* Prediction Item Variants */
+.prediction-item.buy::before,
+.prediction-item.strong-buy::before {
+  background: linear-gradient(180deg, #2ecc71, #27ae60);
+}
+
+.prediction-item.sell::before,
+.prediction-item.strong-sell::before {
+  background: linear-gradient(180deg, #e74c3c, #c0392b);
+}
+
+.prediction-item.hold::before {
+  background: linear-gradient(180deg, #f39c12, #e67e22);
+}
+
+.prediction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.prediction-symbol {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.prediction-date {
+  font-size: 12px;
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+.prediction-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.prediction-recommendation {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.prediction-confidence {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.prediction-status {
+  margin-top: 10px;
+}
+
+.evaluation {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+.evaluation.correct {
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.evaluation.incorrect {
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.evaluation.pending {
+  background: rgba(241, 196, 15, 0.2);
+  color: #f1c40f;
+  border: 1px solid rgba(241, 196, 15, 0.3);
+  animation: pending-pulse 2s infinite;
+}
+
+@keyframes pending-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.evaluation small {
+  font-size: 11px;
+  opacity: 0.8;
+  margin-left: 4px;
+}
+
+/* AI Insights Section */
+.ml-insights {
+  margin-bottom: 40px;
+}
+
+.ml-insights h3 {
+  margin: 0 0 25px 0;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.insight-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  padding: 25px;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.insight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+  border-radius: 15px 15px 0 0;
+}
+
+.insight-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.insight-card h4 {
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.insight-card p {
+  margin: 0;
+  line-height: 1.6;
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+/* Refresh Button */
+.refresh-ml-btn {
+  display: block;
+  margin: 30px auto 0;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.refresh-ml-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.refresh-ml-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(240, 147, 251, 0.4);
+}
+
+.refresh-ml-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.refresh-ml-btn:active {
+  transform: translateY(-1px);
+}
+
+/* Header Controls Integration */
+.header-controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ml-toggle-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.ml-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ml-toggle-btn.active {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  box-shadow: 0 8px 25px rgba(240, 147, 251, 0.4);
+  transform: translateY(-2px);
+}
+
+.ml-dashboard-section {
+  margin-top: 40px;
+  animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ml-dashboard {
+    padding: 25px 20px;
+    margin: 20px 0;
+  }
+  
+  .ml-header h2 {
+    font-size: 28px;
+  }
+  
+  .ml-performance-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .ml-metric-card {
+    padding: 25px 20px;
+    gap: 20px;
+  }
+  
+  .metric-icon {
+    font-size: 32px;
+  }
+  
+  .metric-value {
+    font-size: 28px;
+  }
+  
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .prediction-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .header-controls {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .ml-dashboard {
+    padding: 20px 15px;
+  }
+  
+  .ml-header h2 {
+    font-size: 24px;
+  }
+  
+  .ml-metric-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  .metric-icon {
+    font-size: 36px;
+  }
+  
+  .prediction-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .refresh-ml-btn {
+    padding: 12px 25px;
+    font-size: 14px;
+  }
+  
+  .ml-toggle-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+  .ml-dashboard {
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+  }
+  
+  .ml-metric-card {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  .prediction-item {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  .insight-card {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Print styles */
+@media print {
+  .ml-dashboard {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+  
+  .refresh-ml-btn,
+  .ml-toggle-btn {
+    display: none !important;
+  }
+}
