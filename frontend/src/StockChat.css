@@ -260,3 +260,594 @@
 .chat-messages::-webkit-scrollbar-thumb:hover {
   background: rgba(148, 163, 184, 0.5);
 }
+
+/* Voeg toe aan je bestaande CSS bestanden */
+
+/* Layout updates voor Risk Management Panel */
+.content-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  min-height: calc(100vh - 120px);
+}
+
+.content-layout.with-risk {
+  grid-template-columns: 1fr 400px;
+  gap: 20px;
+}
+
+.chat-section {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 120px);
+}
+
+.risk-section {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 20px;
+  padding: 20px;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+/* Scrollbar styling voor risk section */
+.risk-section::-webkit-scrollbar {
+  width: 6px;
+}
+
+.risk-section::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.3);
+  border-radius: 3px;
+}
+
+.risk-section::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.6);
+  border-radius: 3px;
+}
+
+.risk-section::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.8);
+}
+
+/* Header button updates */
+.header-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.pro-button {
+  padding: 12px 20px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 10px;
+  color: #3b82f6;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.pro-button:hover {
+  background: rgba(59, 130, 246, 0.2);
+  transform: translateY(-1px);
+}
+
+.pro-button.active {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border-color: #1d4ed8;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .content-layout.with-risk {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .risk-section {
+    max-height: 600px;
+    order: -1; /* Show risk panel above chat on mobile */
+  }
+}
+
+@media (max-width: 768px) {
+  .header-controls {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .pro-button {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .header-stats {
+    display: none; /* Hide stats on mobile */
+  }
+  
+  .risk-section {
+    padding: 15px;
+    border-radius: 15px;
+  }
+}
+
+/* Enhanced message styling for risk data */
+.message.bot .message-content {
+  background: linear-gradient(145deg, #1e293b, #334155);
+  position: relative;
+}
+
+.message.bot .message-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #10b981, #f59e0b);
+  border-radius: 12px 12px 0 0;
+}
+
+/* Risk data highlight in messages */
+.message-text {
+  line-height: 1.6;
+}
+
+.message-text strong {
+  color: #60a5fa;
+  font-weight: 700;
+}
+
+/* Loading animation enhancement */
+.loading-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(59, 130, 246, 0.2);
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Input form enhancements */
+.input-form {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.input-container {
+  display: flex;
+  gap: 12px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.message-input {
+  flex: 1;
+  padding: 16px 20px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  color: #e2e8f0;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.message-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.message-input::placeholder {
+  color: #64748b;
+}
+
+.send-button {
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 60px;
+}
+
+.send-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+.send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Advanced Risk Indicators */
+.risk-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.risk-indicator.low {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.risk-indicator.medium {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.risk-indicator.high {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Animation for risk panel entrance */
+.risk-section {
+  animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Notification-style alerts for risk levels */
+.risk-alert {
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  animation: pulse 2s infinite;
+}
+
+.risk-alert.warning {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1));
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #f59e0b;
+}
+
+.risk-alert.danger {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.risk-alert.success {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Enhanced tooltips for risk metrics */
+.risk-tooltip {
+  position: relative;
+  cursor: help;
+}
+
+.risk-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.95);
+  color: #e2e8f0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.risk-tooltip:hover::after {
+  opacity: 1;
+}
+
+/* Interactive elements hover effects */
+.interactive-element {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.interactive-element:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+/* Progress bars for risk metrics */
+.risk-progress {
+  width: 100%;
+  height: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+
+.risk-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s ease-out;
+}
+
+.risk-progress-fill.low {
+  background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.risk-progress-fill.medium {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.risk-progress-fill.high {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+/* Compact mode for mobile */
+@media (max-width: 480px) {
+  .risk-management-panel {
+    padding: 15px;
+    margin: 10px 0;
+  }
+  
+  .price-targets-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .target-card {
+    padding: 15px;
+  }
+  
+  .target-price {
+    font-size: 20px;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .calculator-inputs {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+  .risk-management-panel {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  }
+  
+  .target-card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Print styles for risk reports */
+@media print {
+  .risk-management-panel {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    border: 2px solid #000 !important;
+  }
+  
+  .action-buttons,
+  .custom-calculator {
+    display: none !important;
+  }
+  
+  .target-card {
+    border: 1px solid #000 !important;
+    background: #f5f5f5 !important;
+  }
+}
+
+/* Accessibility improvements */
+.risk-management-panel * {
+  outline-offset: 2px;
+}
+
+.risk-management-panel *:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .risk-management-panel {
+    border: 3px solid #ffffff;
+  }
+  
+  .target-card {
+    border: 2px solid #ffffff !important;
+  }
+  
+  .metric-value {
+    font-weight: 900 !important;
+  }
+}
+/* 🆕 NIEUWE CSS VOOR PERFORMANCE TRACKING */
+
+.trade-logged-indicator {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tracking-hint {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.tracking-hint small {
+  color: #10b981;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.performance-hint {
+  margin-top: 20px;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+  border-radius: 12px;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  text-align: center;
+}
+
+.performance-hint p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.performance-cta {
+  background: linear-gradient(145deg, #1e293b, #334155);
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.cta-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cta-icon {
+  font-size: 32px;
+  opacity: 0.8;
+}
+
+.cta-text {
+  flex: 1;
+}
+
+.cta-text h4 {
+  margin: 0 0 8px 0;
+  color: #10b981;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.cta-text p {
+  margin: 0 0 5px 0;
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.cta-text code {
+  background: rgba(15, 23, 42, 0.8);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  color: #60a5fa;
+  font-size: 12px;
+}
+
+.cta-button {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.cta-button:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .cta-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .trade-logged-indicator {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+}

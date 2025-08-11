@@ -1,8 +1,7 @@
-const express = require('express');
-const cors = require('cors');
 const newsService = require('./newsService');
 const mlDatabase = require('./mlDatabase');
-const tradeLogger = require('./tradeLogger');
+const express = require('express');
+const cors = require('cors');
 
 const app = express();
 const PORT = 3001;
@@ -13,11 +12,11 @@ app.use(express.json());
 // Start ML evaluation cycle
 setInterval(() => {
   mlDatabase.evaluatePredictions();
-}, 60000); // Check every minute for demo
+}, 60000); // Check every minute for demo (in production: every few hours)
 
 // Test route
 app.get('/', (req, res) => {
-  res.json({ message: '🚀 Server met ECHTE Yahoo Finance data + Trade Logging!' });
+  res.json({ message: '🚀 Server met ECHTE Yahoo Finance data!' });
 });
 
 // ML Performance route
@@ -31,7 +30,7 @@ app.get('/api/ml/performance', async (req, res) => {
   }
 });
 
-// CHART ROUTE
+// ECHTE CHART ROUTE
 app.get('/api/chart/:symbol', async (req, res) => {
   try {
     const symbol = req.params.symbol.toUpperCase();
@@ -71,7 +70,10 @@ app.get('/api/chart/:symbol', async (req, res) => {
       
     } catch (yahooError) {
       console.log(`⚠️ Yahoo Finance niet beschikbaar voor ${symbol}, using fallback data`);
+      console.log('Yahoo error:', yahooError.message);
       source = 'Fallback Data';
+      
+      // Fallback naar fake data
       chartData = generateFakeHistoricalData();
     }
     
@@ -99,7 +101,7 @@ app.get('/api/chart/:symbol', async (req, res) => {
   }
 });
 
-// ANALYSE ROUTE MET NIEUWS + TRADE LOGGING
+// ANALYSE ROUTE MET NIEUWS
 app.post('/api/analyze', async (req, res) => {
   try {
     const { question } = req.body;
@@ -151,7 +153,14 @@ app.post('/api/analyze', async (req, res) => {
       source = 'Fallback Data';
       
       stockInfo = generateFakeStockInfo(symbol);
+      // Haal nieuws op
+      console.log(`📰 Requesting news for ${symbol} - ${stockInfo.name}`);
       newsData = await newsService.getStockNews(symbol, stockInfo.name);
+      console.log(`📰 News received:`, {
+        articles: newsData.articles.length,
+        summary: newsData.summary,
+        firstHeadline: newsData.articles[0]?.title
+      });
     }
     
     // Haal historische data op voor technische analyse
@@ -214,16 +223,6 @@ app.post('/api/analyze', async (req, res) => {
       source: source
     };
 
-    // 🆕 AUTOMATISCH TRADE LOGGEN
-    try {
-      const tradeId = tradeLogger.logTrade(response);
-      response.tradeId = tradeId;
-      console.log(`📊 Trade automatically logged with ID: ${tradeId}`);
-    } catch (logError) {
-      console.error('❌ Failed to log trade:', logError);
-      // Continue with response even if logging fails
-    }
-
     console.log(`✅ Complete analyse: ${response.recommendation} (${response.confidence}%) - News: ${newsData.summary.overallSentiment}%`);
     res.json(response);
     
@@ -234,107 +233,6 @@ app.post('/api/analyze', async (req, res) => {
       message: error.message,
       answer: "Sorry, er ging iets mis met de analyse."
     });
-  }
-});
-
-// 📊 TRADE PERFORMANCE ENDPOINTS
-
-// Get all trades
-app.get('/api/trades', (req, res) => {
-  try {
-    const trades = tradeLogger.getAllTrades();
-    res.json({ success: true, trades });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
-
-// Get pending trades (waiting for results)
-app.get('/api/trades/pending', (req, res) => {
-  try {
-    const pendingTrades = tradeLogger.getPendingTrades();
-    res.json({ success: true, trades: pendingTrades });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
-
-// Update trade result
-app.post('/api/trades/:tradeId/result', (req, res) => {
-  try {
-    const tradeId = req.params.tradeId;
-    const result = req.body; // { outcome: 'WIN'|'LOSS'|'NEUTRAL', profitLoss: -5.2, closePrice: 142.50, daysHeld: 3, notes: '' }
-    
-    const updatedTrade = tradeLogger.updateTradeResult(tradeId, result);
-    res.json({ success: true, trade: updatedTrade });
-  } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
-  }
-});
-
-// Get performance metrics
-app.get('/api/performance', (req, res) => {
-  try {
-    const performance = tradeLogger.getPerformanceMetrics();
-    res.json({ success: true, performance });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
-
-// Get AI insights and improvement suggestions
-app.get('/api/insights', (req, res) => {
-  try {
-    const insights = tradeLogger.getAIInsights();
-    const performance = tradeLogger.getPerformanceMetrics();
-    res.json({ 
-      success: true, 
-      insights,
-      summary: {
-        totalTrades: performance.totalTrades,
-        accuracy: performance.accuracy,
-        avgProfitLoss: performance.avgProfitLoss,
-        recentPerformance: performance.recentPerformance
-      }
-    });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
-
-// Get specific trade details
-app.get('/api/trades/:tradeId', (req, res) => {
-  try {
-    const trades = tradeLogger.getAllTrades();
-    const trade = trades.find(t => t.id === req.params.tradeId);
-    
-    if (!trade) {
-      return res.status(404).json({ success: false, error: 'Trade not found' });
-    }
-    
-    res.json({ success: true, trade });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
-
-// Delete trade (in case of mistakes)
-app.delete('/api/trades/:tradeId', (req, res) => {
-  try {
-    const db = tradeLogger.loadDatabase();
-    const tradeIndex = db.trades.findIndex(t => t.id === req.params.tradeId);
-    
-    if (tradeIndex === -1) {
-      return res.status(404).json({ success: false, error: 'Trade not found' });
-    }
-    
-    db.trades.splice(tradeIndex, 1);
-    tradeLogger.saveDatabase(db);
-    tradeLogger.updatePerformanceMetrics();
-    
-    res.json({ success: true, message: 'Trade deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
   }
 });
 
@@ -403,7 +301,7 @@ function calculateTechnicalIndicators(historicalData) {
   const sma50 = closes.length >= 50 ? 
     closes.slice(-50).reduce((a, b) => a + b, 0) / 50 : null;
 
-  // RSI berekening
+  // RSI berekening (simplified)
   const rsi = calculateRSI(closes);
   
   // Trend analyse
@@ -467,6 +365,87 @@ function analyzeTrend(prices) {
   if (trendStrength < -2) return 'STRONG_DOWN';
   if (trendStrength < -0.5) return 'DOWN';
   return 'NEUTRAL';
+}
+
+function generateSmartAnalysis(stockInfo, technical) {
+  let fundamentalScore = 50;
+  let technicalScore = 50;
+  const reasoning = [];
+
+  // Fundamentele analyse
+  if (stockInfo.pe && stockInfo.pe < 15) {
+    fundamentalScore += 15;
+    reasoning.push(`Lage P/E ratio (${stockInfo.pe.toFixed(1)}) suggereert ondergewaardeerd`);
+  } else if (stockInfo.pe && stockInfo.pe > 30) {
+    fundamentalScore -= 10;
+    reasoning.push(`Hoge P/E ratio (${stockInfo.pe.toFixed(1)}) kan overgewaardeerd betekenen`);
+  }
+
+  if (stockInfo.changePercent > 2) {
+    fundamentalScore += 10;
+    reasoning.push(`Sterke dagelijkse winst van ${stockInfo.changePercent.toFixed(2)}%`);
+  } else if (stockInfo.changePercent < -2) {
+    fundamentalScore -= 10;
+    reasoning.push(`Dagelijks verlies van ${stockInfo.changePercent.toFixed(2)}%`);
+  }
+
+  // Technische analyse
+  const rsi = parseFloat(technical.rsi) || 50;
+  if (rsi < 30) {
+    technicalScore += 20;
+    reasoning.push(`RSI van ${rsi.toFixed(1)} toont oversold conditie (koop kans)`);
+  } else if (rsi > 70) {
+    technicalScore -= 15;
+    reasoning.push(`RSI van ${rsi.toFixed(1)} toont overbought conditie`);
+  }
+
+  // Trend analyse
+  switch (technical.trend) {
+    case 'STRONG_UP':
+      technicalScore += 15;
+      reasoning.push('Sterke opwaartse trend gedetecteerd');
+      break;
+    case 'UP':
+      technicalScore += 8;
+      reasoning.push('Positieve prijstrend');
+      break;
+    case 'STRONG_DOWN':
+      technicalScore -= 15;
+      reasoning.push('Sterke neerwaartse trend');
+      break;
+    case 'DOWN':
+      technicalScore -= 8;
+      reasoning.push('Negatieve prijstrend');
+      break;
+    default:
+      reasoning.push('Neutrale markttrend');
+  }
+
+  // Overall score
+  const overallScore = Math.round((fundamentalScore * 0.4) + (technicalScore * 0.6));
+  
+  let recommendation;
+  let confidence;
+  
+  if (overallScore >= 70) {
+    recommendation = 'BUY';
+    confidence = Math.min(90, overallScore + 5);
+  } else if (overallScore >= 55) {
+    recommendation = 'HOLD';
+    confidence = Math.max(60, overallScore);
+  } else {
+    recommendation = 'SELL';
+    confidence = Math.min(90, 100 - overallScore + 5);
+  }
+
+  return {
+    recommendation,
+    confidence: Math.round(confidence),
+    reasoning: reasoning.slice(0, 4),
+    fundamentalScore: Math.round(fundamentalScore),
+    technicalScore: Math.round(technicalScore),
+    overallScore: Math.round(overallScore)
+  };
 }
 
 // Slimme analyse MET nieuws sentiment
@@ -632,12 +611,10 @@ function extractStockSymbol(text) {
   return symbolMatch ? symbolMatch[0] : null;
 }
 
-// Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Clean Server running with Trade Logging!`);
+  console.log(`🚀 Server draait met ECHTE Yahoo Finance data!`);
   console.log(`📊 http://localhost:${PORT}`);
-  console.log(`💹 Chart: http://localhost:${PORT}/api/chart/AAPL`);
-  console.log(`📈 Trades: http://localhost:${PORT}/api/trades`);
+  console.log(`💹 Probeer: http://localhost:${PORT}/api/chart/AAPL`);
   console.log('');
-  console.log('✅ Trade Performance Tracking is ACTIVE!');
+  console.log('🎯 Systeem probeert eerst echte data, dan fallback naar test data');
 });

@@ -17,8 +17,13 @@
       "newsScore": 70,
       "overallScore": 56,
       "evaluationDate": "2025-08-08T14:40:24.103Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 275.5852203618142,
+        "priceChange": 34.81033592947526,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754059669956",
@@ -36,8 +41,13 @@
       "newsScore": 80,
       "overallScore": 65,
       "evaluationDate": "2025-08-08T14:47:49.956Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 286.18946845440763,
+        "priceChange": 51.18302612488517,
+        "isCorrect": true,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754059822425",
@@ -55,8 +65,13 @@
       "newsScore": 80,
       "overallScore": 65,
       "evaluationDate": "2025-08-08T14:50:22.425Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 133.15958605299534,
+        "priceChange": -29.606051671203133,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754059977300",
@@ -75,8 +90,13 @@
       "newsScore": 60,
       "overallScore": 53,
       "evaluationDate": "2025-08-08T14:52:57.300Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 98.19585507368599,
+        "priceChange": -51.92369396637161,
+        "isCorrect": true,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754060446779",
@@ -95,8 +115,13 @@
       "newsScore": 70,
       "overallScore": 56,
       "evaluationDate": "2025-08-08T15:00:46.779Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 174.8034643490516,
+        "priceChange": -14.26369553961713,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754060467773",
@@ -115,8 +140,13 @@
       "newsScore": 49,
       "overallScore": 53,
       "evaluationDate": "2025-08-08T15:01:07.773Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 275.18707636431344,
+        "priceChange": -9.519009014225956,
+        "isCorrect": true,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754061106464",
@@ -135,8 +165,13 @@
       "newsScore": 60,
       "overallScore": 53,
       "evaluationDate": "2025-08-08T15:11:46.464Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 247.771958045409,
+        "priceChange": 21.14803346636466,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754062111961",
@@ -155,8 +190,13 @@
       "newsScore": 50,
       "overallScore": 53,
       "evaluationDate": "2025-08-08T15:28:31.961Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 146.70037748063334,
+        "priceChange": -71.99572826560401,
+        "isCorrect": true,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754062480408",
@@ -176,8 +216,13 @@
       "newsScore": 40,
       "overallScore": 41,
       "evaluationDate": "2025-08-08T15:34:40.408Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 166.16771308024633,
+        "priceChange": -18.30495915425451,
+        "isCorrect": true,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754062588864",
@@ -196,8 +241,13 @@
       "newsScore": 40,
       "overallScore": 44,
       "evaluationDate": "2025-08-08T15:36:28.864Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 177.1055660064239,
+        "priceChange": -12.978790287724104,
+        "isCorrect": true,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754062762327",
@@ -216,8 +266,13 @@
       "newsScore": 40,
       "overallScore": 50,
       "evaluationDate": "2025-08-08T15:39:22.327Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 141.82171232394577,
+        "priceChange": -72.90764366513285,
+        "isCorrect": true,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754062769988",
@@ -236,8 +291,13 @@
       "newsScore": 58,
       "overallScore": 56,
       "evaluationDate": "2025-08-08T15:39:29.988Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 161.57498679466022,
+        "priceChange": null,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754062776733",
@@ -258,8 +318,13 @@
       "newsScore": 34,
       "overallScore": 45,
       "evaluationDate": "2025-08-08T15:39:36.733Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 243.92123659448006,
+        "priceChange": 13.170128561245303,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754062783718",
@@ -278,8 +343,13 @@
       "newsScore": 60,
       "overallScore": 59,
       "evaluationDate": "2025-08-08T15:39:43.718Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 253.15158738083528,
+        "priceChange": 33.87180718182723,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754062790608",
@@ -299,8 +369,13 @@
       "newsScore": 50,
       "overallScore": 53,
       "evaluationDate": "2025-08-08T15:39:50.608Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 253.87539102925396,
+        "priceChange": -17.39457236264858,
+        "isCorrect": true,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754062797641",
@@ -320,8 +395,13 @@
       "newsScore": 50,
       "overallScore": 50,
       "evaluationDate": "2025-08-08T15:39:57.641Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 233.51302668347014,
+        "priceChange": -69.10753857261372,
+        "isCorrect": true,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754062804492",
@@ -341,8 +421,13 @@
       "newsScore": 70,
       "overallScore": 47,
       "evaluationDate": "2025-08-08T15:40:04.492Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 242.59776360824625,
+        "priceChange": -79.17731941065553,
+        "isCorrect": true,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754062811236",
@@ -364,8 +449,13 @@
       "newsScore": 49,
       "overallScore": 44,
       "evaluationDate": "2025-08-08T15:40:11.236Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 174.92047206126713,
+        "priceChange": 1.7393544240488144,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754062822409",
@@ -385,8 +475,13 @@
       "newsScore": 50,
       "overallScore": 53,
       "evaluationDate": "2025-08-08T15:40:22.409Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 157.8168087849135,
+        "priceChange": -10.022059474378699,
+        "isCorrect": true,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754062980215",
@@ -405,8 +500,13 @@
       "newsScore": 60,
       "overallScore": 47,
       "evaluationDate": "2025-08-08T15:43:00.215Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 168.25870881743097,
+        "priceChange": -33.86174805077488,
+        "isCorrect": true,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754063026681",
@@ -425,8 +525,13 @@
       "newsScore": 56,
       "overallScore": 52,
       "evaluationDate": "2025-08-08T15:43:46.681Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 232.63285911025127,
+        "priceChange": null,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754063042060",
@@ -447,8 +552,13 @@
       "newsScore": 50,
       "overallScore": 49,
       "evaluationDate": "2025-08-08T15:44:02.060Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 127.8232694655949,
+        "priceChange": 561.6111255983174,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754063100625",
@@ -468,8 +578,13 @@
       "newsScore": 80,
       "overallScore": 64,
       "evaluationDate": "2025-08-08T15:45:00.625Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 231.21216298673568,
+        "priceChange": 242.8921295962267,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754063125368",
@@ -489,8 +604,13 @@
       "newsScore": 70,
       "overallScore": 61,
       "evaluationDate": "2025-08-08T15:45:25.368Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 125.44338552701485,
+        "priceChange": -64.31350425244588,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754063135594",
@@ -512,8 +632,13 @@
       "newsScore": 74,
       "overallScore": 56,
       "evaluationDate": "2025-08-08T15:45:35.594Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 136.83344480564855,
+        "priceChange": 58.776334190819846,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754063142866",
@@ -534,8 +659,13 @@
       "newsScore": 60,
       "overallScore": 55,
       "evaluationDate": "2025-08-08T15:45:42.866Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 133.97098091268666,
+        "priceChange": 87.188739573406,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754063153792",
@@ -554,8 +684,13 @@
       "newsScore": 64,
       "overallScore": 54,
       "evaluationDate": "2025-08-08T15:45:53.792Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 146.6560094656824,
+        "priceChange": 118.18194046128363,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-09T12:24:33.317Z"
+      }
     },
     {
       "id": "1754319893312",
@@ -576,8 +711,13 @@
       "newsScore": 70,
       "overallScore": 56,
       "evaluationDate": "2025-08-11T15:04:53.312Z",
-      "isEvaluated": false,
-      "actualOutcome": null
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 237.29237595357182,
+        "priceChange": 14.528874923293511,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-11T15:40:19.941Z"
+      }
     },
     {
       "id": "1754320119435",
@@ -598,14 +738,356 @@
       "newsScore": 70,
       "overallScore": 56,
       "evaluationDate": "2025-08-11T15:08:39.435Z",
+      "isEvaluated": true,
+      "actualOutcome": {
+        "currentPrice": 278.46142747663,
+        "priceChange": 34.69160659602881,
+        "isCorrect": false,
+        "evaluatedAt": "2025-08-11T15:40:19.941Z"
+      }
+    },
+    {
+      "id": "1754742295481",
+      "timestamp": "2025-08-09T12:24:55.481Z",
+      "symbol": "AAPL",
+      "recommendation": "SELL",
+      "confidence": 43,
+      "price": 229.35,
+      "reasoning": [
+        "Hoge P/E ratio (34.9) kan overgewaardeerd betekenen",
+        "Sterke dagelijkse winst van 4.24%",
+        "RSI van 74.1 toont overbought conditie",
+        "Neutrale markttrend",
+        "Neutraal nieuws sentiment (50%)",
+        "🤖 AI track record: 41.4% accuracy over 29 voorspellingen"
+      ],
+      "technicalScore": 35,
+      "fundamentalScore": 50,
+      "newsScore": 50,
+      "overallScore": 44,
+      "evaluationDate": "2025-08-16T12:24:55.481Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754743045898",
+      "timestamp": "2025-08-09T12:37:25.898Z",
+      "symbol": "TSLA",
+      "recommendation": "HOLD",
+      "confidence": 42,
+      "price": 329.65,
+      "reasoning": [
+        "Hoge P/E ratio (196.2) kan overgewaardeerd betekenen",
+        "Sterke dagelijkse winst van 2.29%",
+        "Negatieve prijstrend",
+        "Zeer positief nieuws sentiment (80%) ondersteunt bullish outlook",
+        "🤖 AI track record: 40.0% accuracy over 30 voorspellingen"
+      ],
+      "technicalScore": 42,
+      "fundamentalScore": 50,
+      "newsScore": 80,
+      "overallScore": 56,
+      "evaluationDate": "2025-08-16T12:37:25.898Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754743068531",
+      "timestamp": "2025-08-09T12:37:48.531Z",
+      "symbol": "FORD",
+      "recommendation": "SELL",
+      "confidence": 36,
+      "price": 14.22,
+      "reasoning": [
+        "Sterke dagelijkse winst van 5.37%",
+        "RSI van 82.8 toont overbought conditie",
+        "Sterke opwaartse trend gedetecteerd",
+        "Neutraal nieuws sentiment (50%)",
+        "🤖 AI track record: 38.7% accuracy over 31 voorspellingen"
+      ],
+      "technicalScore": 50,
+      "fundamentalScore": 60,
+      "newsScore": 50,
+      "overallScore": 53,
+      "evaluationDate": "2025-08-16T12:37:48.531Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754743092466",
+      "timestamp": "2025-08-09T12:38:12.466Z",
+      "symbol": "NVDA",
+      "recommendation": "HOLD",
+      "confidence": 42,
+      "price": 182.7,
+      "reasoning": [
+        "Hoge P/E ratio (58.7) kan overgewaardeerd betekenen",
+        "Sterke opwaartse trend gedetecteerd",
+        "Neutraal nieuws sentiment (60%)",
+        "🤖 AI track record: 38.7% accuracy over 32 voorspellingen"
+      ],
+      "technicalScore": 65,
+      "fundamentalScore": 40,
+      "newsScore": 60,
+      "overallScore": 56,
+      "evaluationDate": "2025-08-16T12:38:12.466Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754745749413",
+      "timestamp": "2025-08-09T13:22:29.413Z",
+      "symbol": "AAPL",
+      "recommendation": "SELL",
+      "confidence": 41,
+      "price": 229.35,
+      "reasoning": [
+        "Hoge P/E ratio (34.9) kan overgewaardeerd betekenen",
+        "Sterke dagelijkse winst van 4.24%",
+        "RSI van 74.1 toont overbought conditie",
+        "Neutrale markttrend",
+        "Neutraal nieuws sentiment (60%)",
+        "🤖 AI track record: 36.4% accuracy over 33 voorspellingen"
+      ],
+      "technicalScore": 35,
+      "fundamentalScore": 50,
+      "newsScore": 60,
+      "overallScore": 47,
+      "evaluationDate": "2025-08-16T13:22:29.413Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754774469378",
+      "timestamp": "2025-08-09T21:21:09.378Z",
+      "symbol": "MSFT",
+      "recommendation": "HOLD",
+      "confidence": 42,
+      "price": 522.04,
+      "reasoning": [
+        "Hoge P/E ratio (38.3) kan overgewaardeerd betekenen",
+        "Sterke opwaartse trend gedetecteerd",
+        "Neutraal nieuws sentiment (60%)",
+        "🤖 AI track record: 35.3% accuracy over 34 voorspellingen"
+      ],
+      "technicalScore": 65,
+      "fundamentalScore": 40,
+      "newsScore": 60,
+      "overallScore": 56,
+      "evaluationDate": "2025-08-16T21:21:09.378Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754774509364",
+      "timestamp": "2025-08-09T21:21:49.364Z",
+      "symbol": "AAPL",
+      "recommendation": "SELL",
+      "confidence": 39,
+      "price": 229.35,
+      "reasoning": [
+        "Hoge P/E ratio (34.9) kan overgewaardeerd betekenen",
+        "Sterke dagelijkse winst van 4.24%",
+        "RSI van 74.1 toont overbought conditie",
+        "Neutrale markttrend",
+        "Positief nieuws sentiment (70%) is gunstig",
+        "🤖 AI track record: 35.3% accuracy over 35 voorspellingen"
+      ],
+      "technicalScore": 35,
+      "fundamentalScore": 50,
+      "newsScore": 70,
+      "overallScore": 50,
+      "evaluationDate": "2025-08-16T21:21:49.364Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754776091497",
+      "timestamp": "2025-08-09T21:48:11.497Z",
+      "symbol": "AAPL",
+      "recommendation": "SELL",
+      "confidence": 39,
+      "price": 229.35,
+      "reasoning": [
+        "Hoge P/E ratio (34.9) kan overgewaardeerd betekenen",
+        "Sterke dagelijkse winst van 4.24%",
+        "RSI van 74.1 toont overbought conditie",
+        "Neutrale markttrend",
+        "Positief nieuws sentiment (70%) is gunstig",
+        "🤖 AI track record: 33.3% accuracy over 36 voorspellingen"
+      ],
+      "technicalScore": 35,
+      "fundamentalScore": 50,
+      "newsScore": 70,
+      "overallScore": 50,
+      "evaluationDate": "2025-08-16T21:48:11.497Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754926810235",
+      "timestamp": "2025-08-11T15:40:10.235Z",
+      "symbol": "TSLA",
+      "recommendation": "SELL",
+      "confidence": 41,
+      "price": 344.68,
+      "reasoning": [
+        "Hoge P/E ratio (205.2) kan overgewaardeerd betekenen",
+        "Sterke dagelijkse winst van 4.55%",
+        "Negatieve prijstrend",
+        "Neutraal nieuws sentiment (50%)",
+        "🤖 AI track record: 32.4% accuracy over 37 voorspellingen"
+      ],
+      "technicalScore": 42,
+      "fundamentalScore": 50,
+      "newsScore": 50,
+      "overallScore": 47,
+      "evaluationDate": "2025-08-18T15:40:10.235Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754928612464",
+      "timestamp": "2025-08-11T16:10:12.464Z",
+      "symbol": "AMD",
+      "recommendation": "SELL",
+      "confidence": 36,
+      "price": 176.8004,
+      "reasoning": [
+        "Hoge P/E ratio (105.2) kan overgewaardeerd betekenen",
+        "Sterke dagelijkse winst van 2.34%",
+        "Sterke opwaartse trend gedetecteerd",
+        "Neutraal nieuws sentiment (40%)",
+        "🤖 AI track record: 31.6% accuracy over 38 voorspellingen"
+      ],
+      "technicalScore": 65,
+      "fundamentalScore": 50,
+      "newsScore": 40,
+      "overallScore": 53,
+      "evaluationDate": "2025-08-18T16:10:12.464Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754929922546",
+      "timestamp": "2025-08-11T16:32:02.546Z",
+      "symbol": "AAPL",
+      "recommendation": "SELL",
+      "confidence": 43,
+      "price": 228.865,
+      "reasoning": [
+        "Hoge P/E ratio (34.8) kan overgewaardeerd betekenen",
+        "RSI van 73.1 toont overbought conditie",
+        "Neutrale markttrend",
+        "Neutraal nieuws sentiment (60%)",
+        "🤖 AI track record: 30.8% accuracy over 39 voorspellingen",
+        "📊 Voor AAPL: 37.5% accuracy in 8 analyses"
+      ],
+      "technicalScore": 35,
+      "fundamentalScore": 40,
+      "newsScore": 60,
+      "overallScore": 44,
+      "evaluationDate": "2025-08-18T16:32:02.546Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754930598385",
+      "timestamp": "2025-08-11T16:43:18.385Z",
+      "symbol": "AAPL",
+      "recommendation": "SELL",
+      "confidence": 43,
+      "price": 228.82,
+      "reasoning": [
+        "Hoge P/E ratio (34.8) kan overgewaardeerd betekenen",
+        "RSI van 73.1 toont overbought conditie",
+        "Neutrale markttrend",
+        "Neutraal nieuws sentiment (60%)",
+        "🤖 AI track record: 30.0% accuracy over 40 voorspellingen",
+        "📊 Voor AAPL: 37.5% accuracy in 8 analyses"
+      ],
+      "technicalScore": 35,
+      "fundamentalScore": 40,
+      "newsScore": 60,
+      "overallScore": 44,
+      "evaluationDate": "2025-08-18T16:43:18.385Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754930829321",
+      "timestamp": "2025-08-11T16:47:09.321Z",
+      "symbol": "AAPL",
+      "recommendation": "SELL",
+      "confidence": 43,
+      "price": 228.88,
+      "reasoning": [
+        "Hoge P/E ratio (34.8) kan overgewaardeerd betekenen",
+        "RSI van 73.2 toont overbought conditie",
+        "Neutrale markttrend",
+        "Neutraal nieuws sentiment (60%)",
+        "🤖 AI track record: 29.3% accuracy over 41 voorspellingen",
+        "📊 Voor AAPL: 37.5% accuracy in 8 analyses"
+      ],
+      "technicalScore": 35,
+      "fundamentalScore": 40,
+      "newsScore": 60,
+      "overallScore": 44,
+      "evaluationDate": "2025-08-18T16:47:09.321Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754930912242",
+      "timestamp": "2025-08-11T16:48:32.243Z",
+      "symbol": "AAPL",
+      "recommendation": "SELL",
+      "confidence": 43,
+      "price": 228.7504,
+      "reasoning": [
+        "Hoge P/E ratio (34.8) kan overgewaardeerd betekenen",
+        "RSI van 72.9 toont overbought conditie",
+        "Neutrale markttrend",
+        "Neutraal nieuws sentiment (60%)",
+        "🤖 AI track record: 28.6% accuracy over 42 voorspellingen",
+        "📊 Voor AAPL: 37.5% accuracy in 8 analyses"
+      ],
+      "technicalScore": 35,
+      "fundamentalScore": 40,
+      "newsScore": 60,
+      "overallScore": 44,
+      "evaluationDate": "2025-08-18T16:48:32.243Z",
+      "isEvaluated": false,
+      "actualOutcome": null
+    },
+    {
+      "id": "1754931889301",
+      "timestamp": "2025-08-11T17:04:49.301Z",
+      "symbol": "AAPL",
+      "recommendation": "SELL",
+      "confidence": 43,
+      "price": 228.3799,
+      "reasoning": [
+        "Hoge P/E ratio (34.7) kan overgewaardeerd betekenen",
+        "RSI van 72.2 toont overbought conditie",
+        "Neutrale markttrend",
+        "Neutraal nieuws sentiment (60%)",
+        "🤖 AI track record: 27.9% accuracy over 43 voorspellingen",
+        "📊 Voor AAPL: 37.5% accuracy in 8 analyses"
+      ],
+      "technicalScore": 35,
+      "fundamentalScore": 40,
+      "newsScore": 60,
+      "overallScore": 44,
+      "evaluationDate": "2025-08-18T17:04:49.302Z",
       "isEvaluated": false,
       "actualOutcome": null
     }
   ],
   "performance": {
-    "totalPredictions": 29,
-    "correctPredictions": 0,
-    "accuracy": 0,
+    "totalPredictions": 44,
+    "correctPredictions": 12,
+    "accuracy": 0.2727272727272727,
     "confidenceCalibration": 0.7,
     "stockPerformance": {}
   },

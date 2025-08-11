@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import ProfessionalStockChart from './StockChart';
 import MLDashboard from './MLDashboard';
+import TradingDashboard from './TradingDashboard';
+import TradePerformanceDashboard from './TradePerformanceDashboard';
 import './StockChat.css';
 
 const getSentimentClass = (score) => {
@@ -18,6 +20,7 @@ function StockChat() {
   const [isLoading, setIsLoading] = useState(false);
   const [showMLDashboard, setShowMLDashboard] = useState(false);
   const [currentAnalysis, setCurrentAnalysis] = useState(null);
+  const [showTradePerformance, setShowTradePerformance] = useState(false); // 🆕 NIEUWE STATE
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -59,7 +62,8 @@ function StockChat() {
         scores: data.analysis,
         technicalData: data.technicalData,
         fundamentalData: data.fundamentalData,
-        newsData: data.newsData
+        newsData: data.newsData,
+        tradeId: data.tradeId // 🆕 TRADE ID van backend
       };
 
       const aiResponse = {
@@ -102,6 +106,37 @@ function StockChat() {
     });
   };
 
+  // 🆕 TRADE PERFORMANCE DASHBOARD VIEW
+  if (showTradePerformance) {
+    return (
+      <div className="App">
+        <header className="professional-header">
+          <div className="header-content">
+            <div className="brand-section">
+              <div className="brand-logo">🤖</div>
+              <div className="brand-info">
+                <h1>AI Trading Advisor</h1>
+                <p>Trade Performance Dashboard</p>
+              </div>
+            </div>
+            <div className="header-controls">
+              <button 
+                className="pro-button active"
+                onClick={() => setShowTradePerformance(false)}
+              >
+                💬 Back to Chat
+              </button>
+            </div>
+          </div>
+        </header>
+        <div className="main-content">
+          <TradePerformanceDashboard />
+        </div>
+      </div>
+    );
+  }
+
+  // ML DASHBOARD VIEW (bestaande code)
   if (showMLDashboard) {
     return (
       <div className="App">
@@ -161,6 +196,13 @@ function StockChat() {
             </div>
             
             <div className="header-controls">
+              {/* 🆕 NIEUWE PERFORMANCE BUTTON */}
+              <button 
+                className="pro-button"
+                onClick={() => setShowTradePerformance(true)}
+              >
+                📊 Performance
+              </button>
               <button 
                 className="pro-button"
                 onClick={() => setShowMLDashboard(true)}
@@ -193,6 +235,10 @@ function StockChat() {
                       <div className="example-query">"Show Tesla chart with indicators"</div>
                       <div className="example-query">"Should I buy Microsoft?"</div>
                     </div>
+                    {/* 🆕 PERFORMANCE HINT */}
+                    <div className="performance-hint">
+                      <p>💡 <strong>New:</strong> All your analyses are automatically tracked! Check the <strong>📊 Performance</strong> dashboard to see your AI's accuracy and improve your trading.</p>
+                    </div>
                   </div>
                 </div>
               )}
@@ -206,6 +252,12 @@ function StockChat() {
                     <div className="message-time">
                       {formatTime(message.timestamp)}
                     </div>
+                    {/* 🆕 TRADE ID INDICATOR */}
+                    {message.analysis?.tradeId && (
+                      <div className="trade-logged-indicator">
+                        📊 Logged
+                      </div>
+                    )}
                   </div>
                   
                   <div className="message-text">
@@ -237,6 +289,12 @@ function StockChat() {
                               <div className="confidence-display">
                                 {message.analysis.confidence}% Confidence
                               </div>
+                              {/* 🆕 PERFORMANCE TRACKING HINT */}
+                              {message.analysis.tradeId && (
+                                <div className="tracking-hint">
+                                  <small>🎯 This prediction is being tracked for accuracy</small>
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -356,6 +414,35 @@ function StockChat() {
                           </div>
                         </div>
                       )}
+
+                      {/* 🎯 TRADING DASHBOARD */}
+                      {message.analysis && (
+                        <TradingDashboard 
+                          analysis={message.analysis} 
+                          symbol={message.analysis.symbol} 
+                        />
+                      )}
+
+                      {/* 🆕 PERFORMANCE TRACKING CALL-TO-ACTION */}
+                      {message.analysis?.tradeId && (
+                        <div className="performance-cta">
+                          <div className="cta-content">
+                            <div className="cta-icon">📊</div>
+                            <div className="cta-text">
+                              <h4>Track This Prediction</h4>
+                              <p>This analysis has been logged with ID: <code>{message.analysis.tradeId}</code></p>
+                              <p>Come back in a few days to update the result and improve AI accuracy!</p>
+                            </div>
+                            <button 
+                              className="cta-button"
+                              onClick={() => setShowTradePerformance(true)}
+                            >
+                              View All Predictions →
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
                     </div>
                   )}
                 </div>

@@ -1,0 +1,162 @@
+{
+  "totalTrades": 1,
+  "correctPredictions": 1,
+  "totalProfitLoss": 5.1,
+  "winningTrades": 1,
+  "losingTrades": 0,
+  "neutralTrades": 0,
+  "avgProfitLoss": 5.1,
+  "bestTrade": {
+    "id": "TRADE_1754931889303_b1ikg57k4",
+    "timestamp": "2025-08-11T17:04:49.303Z",
+    "symbol": "AAPL",
+    "companyName": "Apple",
+    "recommendation": "SELL",
+    "confidence": 43,
+    "aiReasoning": [
+      "Hoge P/E ratio (34.7) kan overgewaardeerd betekenen",
+      "RSI van 72.2 toont overbought conditie",
+      "Neutrale markttrend",
+      "Neutraal nieuws sentiment (60%)",
+      "🤖 AI track record: 27.9% accuracy over 43 voorspellingen",
+      "📊 Voor AAPL: 37.5% accuracy in 8 analyses"
+    ],
+    "currentPrice": 228.3799,
+    "priceChange": -0.71009827,
+    "priceChangePercent": -0.30996478,
+    "rsi": "72.2",
+    "trend": "NEUTRAL",
+    "volumeRatio": "0.6",
+    "newsScore": 60,
+    "fundamentalScore": 40,
+    "technicalScore": 35,
+    "overallScore": 44,
+    "actualOutcome": "WIN",
+    "actualProfitLoss": 5.1,
+    "daysHeld": 1,
+    "closePrice": 142,
+    "resultEnteredAt": "2025-08-11T17:10:41.371Z",
+    "resultEnteredBy": "manual",
+    "status": "COMPLETED",
+    "notes": ""
+  },
+  "worstTrade": {
+    "id": "TRADE_1754931889303_b1ikg57k4",
+    "timestamp": "2025-08-11T17:04:49.303Z",
+    "symbol": "AAPL",
+    "companyName": "Apple",
+    "recommendation": "SELL",
+    "confidence": 43,
+    "aiReasoning": [
+      "Hoge P/E ratio (34.7) kan overgewaardeerd betekenen",
+      "RSI van 72.2 toont overbought conditie",
+      "Neutrale markttrend",
+      "Neutraal nieuws sentiment (60%)",
+      "🤖 AI track record: 27.9% accuracy over 43 voorspellingen",
+      "📊 Voor AAPL: 37.5% accuracy in 8 analyses"
+    ],
+    "currentPrice": 228.3799,
+    "priceChange": -0.71009827,
+    "priceChangePercent": -0.30996478,
+    "rsi": "72.2",
+    "trend": "NEUTRAL",
+    "volumeRatio": "0.6",
+    "newsScore": 60,
+    "fundamentalScore": 40,
+    "technicalScore": 35,
+    "overallScore": 44,
+    "actualOutcome": "WIN",
+    "actualProfitLoss": 5.1,
+    "daysHeld": 1,
+    "closePrice": 142,
+    "resultEnteredAt": "2025-08-11T17:10:41.371Z",
+    "resultEnteredBy": "manual",
+    "status": "COMPLETED",
+    "notes": ""
+  },
+  "bySymbol": {
+    "AAPL": {
+      "total": 1,
+      "correct": 1,
+      "totalProfitLoss": 5.1,
+      "accuracy": 100
+    }
+  },
+  "byConfidence": {
+    "90-100%": {
+      "total": 0,
+      "correct": 0,
+      "avgProfitLoss": 0,
+      "totalProfitLoss": 0,
+      "accuracy": 0
+    },
+    "80-89%": {
+      "total": 0,
+      "correct": 0,
+      "avgProfitLoss": 0,
+      "totalProfitLoss": 0,
+      "accuracy": 0
+    },
+    "70-79%": {
+      "total": 0,
+      "correct": 0,
+      "avgProfitLoss": 0,
+      "totalProfitLoss": 0,
+      "accuracy": 0
+    },
+    "60-69%": {
+      "total": 0,
+      "correct": 0,
+      "avgProfitLoss": 0,
+      "totalProfitLoss": 0,
+      "accuracy": 0
+    },
+    "50-59%": {
+      "total": 1,
+      "correct": 1,
+      "avgProfitLoss": 5.1,
+      "totalProfitLoss": 5.1,
+      "accuracy": 100
+    }
+  },
+  "byTrend": {
+    "NEUTRAL": {
+      "total": 1,
+      "correct": 1,
+      "totalProfitLoss": 5.1,
+      "accuracy": 100,
+      "avgProfitLoss": 5.1
+    }
+  },
+  "byRSI": {
+    "Oversold (0-30)": {
+      "total": 0,
+      "correct": 0,
+      "totalProfitLoss": 0,
+      "accuracy": 0,
+      "avgProfitLoss": 0
+    },
+    "Neutral (30-70)": {
+      "total": 0,
+      "correct": 0,
+      "totalProfitLoss": 0,
+      "accuracy": 0,
+      "avgProfitLoss": 0
+    },
+    "Overbought (70-100)": {
+      "total": 1,
+      "correct": 1,
+      "totalProfitLoss": 5.1,
+      "accuracy": 100,
+      "avgProfitLoss": 5.1
+    }
+  },
+  "recentPerformance": {
+    "trades": 1,
+    "accuracy": 100,
+    "avgProfitLoss": 5.1,
+    "totalProfitLoss": 5.1
+  },
+  "lastUpdated": "2025-08-11T17:10:41.373Z",
+  "accuracy": 100
+}
