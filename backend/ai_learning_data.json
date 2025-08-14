@@ -1,0 +1,140 @@
+{
+  "aiVersion": 1,
+  "totalAnalyzedTrades": 3,
+  "lastLearningUpdate": "2025-08-13T13:19:57.656Z",
+  "patterns": [
+    {
+      "id": "PATTERN_1755038931588_mr27g64t7",
+      "timestamp": "2025-08-12T22:48:51.588Z",
+      "features": {
+        "pricePosition52Week": 0.5,
+        "priceChangePercent": null,
+        "rsi": null,
+        "rsiRegime": "OVERBOUGHT",
+        "macdSignal": "NEUTRAL",
+        "bollingerPosition": 0.5,
+        "volumeRatio": 1,
+        "trendDirection": "NEUTRAL",
+        "trendStrength": 0,
+        "peRatio": "UNKNOWN",
+        "marketCapCategory": "UNKNOWN",
+        "newsSentiment": 0.5,
+        "newsVolume": 0,
+        "sector": "TECH",
+        "marketCondition": "BEAR"
+      },
+      "wasCorrect": false,
+      "profitLoss": 0,
+      "holdingPeriod": 1
+    },
+    {
+      "id": "PATTERN_1755040658725_x3uhsyv3e",
+      "timestamp": "2025-08-12T23:17:38.725Z",
+      "features": {
+        "pricePosition52Week": 0.5,
+        "priceChangePercent": null,
+        "rsi": null,
+        "rsiRegime": "OVERBOUGHT",
+        "macdSignal": "NEUTRAL",
+        "bollingerPosition": 0.5,
+        "volumeRatio": 1,
+        "trendDirection": "NEUTRAL",
+        "trendStrength": 0,
+        "peRatio": "UNKNOWN",
+        "marketCapCategory": "UNKNOWN",
+        "newsSentiment": 0.5,
+        "newsVolume": 0,
+        "sector": "TECH",
+        "marketCondition": "BEAR"
+      },
+      "wasCorrect": false,
+      "profitLoss": 0,
+      "holdingPeriod": 1
+    },
+    {
+      "id": "PATTERN_1755091197656_trq2oqmuy",
+      "timestamp": "2025-08-13T13:19:57.656Z",
+      "features": {
+        "pricePosition52Week": 0.5,
+        "priceChangePercent": null,
+        "rsi": null,
+        "rsiRegime": "OVERBOUGHT",
+        "macdSignal": "NEUTRAL",
+        "bollingerPosition": 0.5,
+        "volumeRatio": 1,
+        "trendDirection": "NEUTRAL",
+        "trendStrength": 0,
+        "peRatio": "UNKNOWN",
+        "marketCapCategory": "UNKNOWN",
+        "newsSentiment": 0.5,
+        "newsVolume": 0,
+        "sector": "CRYPTO",
+        "marketCondition": "BEAR"
+      },
+      "wasCorrect": false,
+      "profitLoss": 0,
+      "holdingPeriod": 1
+    }
+  ],
+  "sectorPerformance": {
+    "TECH": {
+      "totalTrades": 2,
+      "successfulTrades": 0,
+      "totalReturn": 0,
+      "avgHoldingPeriod": 0.75,
+      "volatilityFactor": 1
+    },
+    "CRYPTO": {
+      "totalTrades": 1,
+      "successfulTrades": 0,
+      "totalReturn": 0,
+      "avgHoldingPeriod": 0.5,
+      "volatilityFactor": 1
+    }
+  },
+  "marketConditions": {
+    "BULL": {
+      "totalTrades": 1,
+      "successfulTrades": 0,
+      "avgSuccessRate": 0
+    },
+    "BEAR": {
+      "totalTrades": 1,
+      "successfulTrades": 0,
+      "avgSuccessRate": 0
+    },
+    "SIDEWAYS": {
+      "totalTrades": 1,
+      "successfulTrades": 0,
+      "avgSuccessRate": 0
+    }
+  },
+  "confidenceCalibration": {
+    "LOW": {
+      "totalPredictions": 3,
+      "correctPredictions": 0,
+      "actualAccuracy": 0
+    },
+    "MEDIUM": {
+      "totalPredictions": 0,
+      "correctPredictions": 0,
+      "actualAccuracy": 0
+    },
+    "HIGH": {
+      "totalPredictions": 0,
+      "correctPredictions": 0,
+      "actualAccuracy": 0
+    }
+  },
+  "learningParameters": {
+    "confidenceBoost": 1,
+    "patternThreshold": 0.7,
+    "recencyWeight": 0.3
+  },
+  "capabilities": {
+    "basicLearning": true,
+    "advancedPatterns": false,
+    "marketTimingOptimization": false,
+    "personalizedRecommendations": false
+  }
+}

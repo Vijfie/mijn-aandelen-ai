@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trading Backtester Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .strategies {
+            margin-bottom: 40px;
+        }
+        .strategy-card {
+            background: #f8f9ff;
+            border: 2px solid #e1e5fe;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        .strategy-card:hover {
+            border-color: #667eea;
+            transform: translateX(10px);
+        }
+        .strategy-rank {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        .recommendation {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        .recommendation h2 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        .implementation-steps {
+            list-style: none;
+            padding-left: 0;
+        }
+        .implementation-steps li {
+            background: rgba(255,255,255,0.2);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid white;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Ì∫Ä AI Trading Backtester Dashboard</h1>
+            <p>Complete Backtest Analysis Results</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">$1,399</div>
+                <div class="stat-label">Total Profit</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3.51%</div>
+                <div class="stat-label">Best Return</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3.51</div>
+                <div class="stat-label">Best Sharpe Ratio</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">4</div>
+                <div class="stat-label">Strategies Tested</div>
+            </div>
+        </div>
+
+        <div class="strategies">
+            <h2>Ì≥ä Strategy Performance Rankings</h2>
+            
+            <div class="strategy-card">
+                <span class="strategy-rank">Ìµá #1</span>
+                <strong>Tech Portfolio</strong> - 3.51% return (+$1,052) | Sharpe: 3.51 | 6 trades
+                <br><small>Symbols: AAPL+MSFT+GOOGL | Capital: $30,000</small>
+            </div>
+            
+            <div class="strategy-card">
+                <span class="strategy-rank">Ìµà #2</span>
+                <strong>Multi Stock Balanced</strong> - 1.49% return (+$297) | Sharpe: 1.66 | 2 trades
+                <br><small>Symbols: AAPL+MSFT | Capital: $20,000</small>
+            </div>
+            
+            <div class="strategy-card">
+                <span class="strategy-rank">Ìµâ #3</span>
+                <strong>Single Stock Conservative</strong> - 0.50% return (+$50) | Sharpe: 0.17 | 2 trades
+                <br><small>Symbols: AAPL | Capital: $10,000</small>
+            </div>
+            
+            <div class="strategy-card">
+                <span class="strategy-rank">4Ô∏è‚É£ #4</span>
+                <strong>Single Stock Aggressive</strong> - 0.00% return ($0) | Sharpe: 0.00 | 0 trades
+                <br><small>Symbols: AAPL | Capital: $10,000</small>
+            </div>
+        </div>
+
+        <div class="recommendation">
+            <h2>ÌæØ Optimal Strategy Recommendation</h2>
+            <p><strong>Winner: Tech Portfolio Strategy</strong></p>
+            <p>Expected Return: <strong>3.51%</strong> | Expected Profit: <strong>$1,052</strong></p>
+            
+            <h3>Ì≥ã Implementation Guide:</h3>
+            <ul class="implementation-steps">
+                <li>Ì≤∞ Set starting capital to $30,000</li>
+                <li>Ì≥ä Focus on: AAPL + MSFT + GOOGL</li>
+                <li>ÌæõÔ∏è Use parameters: -3% dip trigger, +2.5% profit target</li>
+                <li>Ì≥à Expected outcome: $1,052 profit in ~50 days</li>
+                <li>‚ö° Risk-adjusted performance: 3.51 Sharpe ratio</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>‚ú® Backtest completed successfully! Generated: August 13, 2025</p>
+            <p>Ì≥Å Detailed data available in: backtest_results.csv</p>
+        </div>
+    </div>
+</body>
+</html>

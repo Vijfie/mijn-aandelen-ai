@@ -1,0 +1,20 @@
+{
+  "name": "ai-trading-backtester",
+  "version": "1.0.0",
+  "description": "AI Trading Backtester",
+  "main": "test.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node test.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "moment": "^2.29.4",
+    "sqlite3": "^5.1.7",
+    "yahoo-finance2": "^2.11.3"
+  },
+  "author": "You",
+  "license": "MIT"
+}

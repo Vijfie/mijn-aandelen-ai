@@ -1,11 +1,11 @@
 {
-  "totalTrades": 1,
-  "correctPredictions": 1,
-  "totalProfitLoss": 5.1,
-  "winningTrades": 1,
+  "totalTrades": 4,
+  "correctPredictions": 4,
+  "totalProfitLoss": 14.643353669809578,
+  "winningTrades": 4,
   "losingTrades": 0,
   "neutralTrades": 0,
-  "avgProfitLoss": 5.1,
+  "avgProfitLoss": 3.6608384174523945,
   "bestTrade": {
     "id": "TRADE_1754931889303_b1ikg57k4",
     "timestamp": "2025-08-11T17:04:49.303Z",
@@ -41,44 +41,44 @@
     "notes": ""
   },
   "worstTrade": {
-    "id": "TRADE_1754931889303_b1ikg57k4",
-    "timestamp": "2025-08-11T17:04:49.303Z",
-    "symbol": "AAPL",
-    "companyName": "Apple",
-    "recommendation": "SELL",
-    "confidence": 43,
+    "id": "TRADE_1755090173117_k8udou84k",
+    "timestamp": "2025-08-13T13:02:53.117Z",
+    "symbol": "BTCUSD",
+    "companyName": "BTCUSD Company",
+    "recommendation": "BUY",
+    "confidence": 70,
     "aiReasoning": [
-      "Hoge P/E ratio (34.7) kan overgewaardeerd betekenen",
-      "RSI van 72.2 toont overbought conditie",
-      "Neutrale markttrend",
-      "Neutraal nieuws sentiment (60%)",
-      "🤖 AI track record: 27.9% accuracy over 43 voorspellingen",
-      "📊 Voor AAPL: 37.5% accuracy in 8 analyses"
+      "TradingView MANUAL_TEST signal",
+      "Auto-sync from paper trading",
+      "TradingView signal for BTCUSD"
     ],
-    "currentPrice": 228.3799,
-    "priceChange": -0.71009827,
-    "priceChangePercent": -0.30996478,
-    "rsi": "72.2",
+    "currentPrice": 45000,
+    "priceChange": 0,
+    "priceChangePercent": 0,
+    "rsi": null,
     "trend": "NEUTRAL",
-    "volumeRatio": "0.6",
-    "newsScore": 60,
-    "fundamentalScore": 40,
-    "technicalScore": 35,
-    "overallScore": 44,
+    "volumeRatio": null,
+    "newsScore": 50,
     "actualOutcome": "WIN",
-    "actualProfitLoss": 5.1,
+    "actualProfitLoss": 2.2222222222222223,
     "daysHeld": 1,
-    "closePrice": 142,
-    "resultEnteredAt": "2025-08-11T17:10:41.371Z",
+    "closePrice": 46000,
+    "resultEnteredAt": "2025-08-13T13:19:57.654Z",
     "resultEnteredBy": "manual",
     "status": "COMPLETED",
-    "notes": ""
+    "notes": "Closed via Position Tracker"
   },
   "bySymbol": {
     "AAPL": {
+      "total": 3,
+      "correct": 3,
+      "totalProfitLoss": 12.421131447587355,
+      "accuracy": 100
+    },
+    "BTCUSD": {
       "total": 1,
       "correct": 1,
-      "totalProfitLoss": 5.1,
+      "totalProfitLoss": 2.2222222222222223,
       "accuracy": 100
     }
   },
@@ -98,11 +98,11 @@
       "accuracy": 0
     },
     "70-79%": {
-      "total": 0,
-      "correct": 0,
-      "avgProfitLoss": 0,
-      "totalProfitLoss": 0,
-      "accuracy": 0
+      "total": 3,
+      "correct": 3,
+      "avgProfitLoss": 3.1811178899365253,
+      "totalProfitLoss": 9.543353669809576,
+      "accuracy": 100
     },
     "60-69%": {
       "total": 0,
@@ -121,11 +121,11 @@
   },
   "byTrend": {
     "NEUTRAL": {
-      "total": 1,
-      "correct": 1,
-      "totalProfitLoss": 5.1,
+      "total": 4,
+      "correct": 4,
+      "totalProfitLoss": 14.643353669809578,
       "accuracy": 100,
-      "avgProfitLoss": 5.1
+      "avgProfitLoss": 3.6608384174523945
     }
   },
   "byRSI": {
@@ -152,11 +152,11 @@
     }
   },
   "recentPerformance": {
-    "trades": 1,
+    "trades": 4,
     "accuracy": 100,
-    "avgProfitLoss": 5.1,
-    "totalProfitLoss": 5.1
+    "avgProfitLoss": 3.6608384174523945,
+    "totalProfitLoss": 14.643353669809578
   },
-  "lastUpdated": "2025-08-11T17:10:41.373Z",
+  "lastUpdated": "2025-08-13T13:19:57.655Z",
   "accuracy": 100
 }

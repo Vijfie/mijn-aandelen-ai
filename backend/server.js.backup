@@ -1,0 +1,613 @@
+// backend/server.js - Complete nieuwe versie
+const express = require('express');
+const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Imports
+const stockDatabase = require('./stockDatabase');
+const newsService = require('./newsService');
+const tradeLogger = require('./tradeLogger');
+
+// Yahoo Finance setup
+let yahooFinance;
+try {
+  yahooFinance = require('yahoo-finance2').default;
+  yahooFinance.suppressNotices(['yahooSurvey']);
+  console.log('✅ Yahoo Finance loaded successfully');
+} catch (error) {
+  console.log('❌ Yahoo Finance not available:', error.message);
+}
+
+// ===== UTILITY FUNCTIONS =====
+
+function extractStockSymbol(text) {
+  if (!text) return null;
+  
+  console.log(`🔍 Extracting symbol from: "${text}"`);
+  
+  const cleanText = text.trim().toUpperCase();
+  
+  // Try database lookup first
+  const directLookup = stockDatabase.findStockSymbol(text);
+  if (directLookup) {
+    console.log(`✅ Direct lookup: ${text} → ${directLookup}`);
+    return directLookup;
+  }
+  
+  // Try pattern matching
+  const patterns = [
+    /\b([A-Z]{1,5})\b/g,
+    /(?:analyseer|analyze|stock|aandeel)\s+([a-zA-Z\s&-]+?)(?:\s|$)/gi,
+    /(?:wat vind je van|hoe ziet|analyse van)\s+([a-zA-Z\s&-]+?)(?:\s|$|\?)/gi
+  ];
+  
+  for (const pattern of patterns) {
+    const matches = [...cleanText.matchAll(pattern)];
+    for (const match of matches) {
+      const candidate = match[1];
+      if (candidate) {
+        const symbol = stockDatabase.findStockSymbol(candidate);
+        if (symbol) {
+          console.log(`✅ Pattern match: ${candidate} → ${symbol}`);
+          return symbol;
+        }
+      }
+    }
+  }
+  
+  console.log(`❌ No symbol found for: "${text}"`);
+  return null;
+}
+
+async function getStockData(symbol) {
+  console.log(`📊 Getting stock data for: ${symbol}`);
+  
+  if (!yahooFinance) {
+    throw new Error('Yahoo Finance not available');
+  }
+  
+  try {
+    const quote = await Promise.race([
+      yahooFinance.quote(symbol),
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Yahoo Finance timeout')), 8000)
+      )
+    ]);
+    
+    if (!quote || typeof quote.regularMarketPrice !== 'number') {
+      throw new Error(`Invalid quote data for ${symbol}`);
+    }
+    
+    const stockData = {
+      symbol: symbol,
+      name: quote.displayName || quote.shortName || `${symbol} Stock`,
+      price: quote.regularMarketPrice,
+      change: quote.regularMarketChange || 0,
+      changePercent: quote.regularMarketChangePercent || 0,
+      volume: quote.regularMarketVolume || 0,
+      marketCap: quote.marketCap || 0,
+      pe: quote.trailingPE || null,
+      beta: quote.beta || null,
+      high52: quote.fiftyTwoWeekHigh || 0,
+      low52: quote.fiftyTwoWeekLow || 0,
+      currency: quote.currency || 'USD'
+    };
+    
+    console.log(`✅ Yahoo Finance: ${stockData.name} - $${stockData.price}`);
+    return { data: stockData, source: 'Yahoo Finance' };
+    
+  } catch (error) {
+    console.log(`❌ Yahoo Finance failed for ${symbol}: ${error.message}`);
+    throw error;
+  }
+}
+
+async function getHistoricalData(symbol) {
+  if (!yahooFinance) {
+    return generateFakeHistoricalData();
+  }
+  
+  try {
+    const endDate = new Date();
+    const startDate = new Date();
+    startDate.setMonth(startDate.getMonth() - 3);
+    
+    const historical = await yahooFinance.historical(symbol, {
+      period1: startDate,
+      period2: endDate,
+      interval: '1d'
+    });
+    
+    return historical.map(item => ({
+      date: item.date,
+      open: item.open,
+      high: item.high,
+      low: item.low,
+      close: item.close,
+      volume: item.volume
+    }));
+    
+  } catch (error) {
+    console.log(`Historical data fallback for ${symbol}`);
+    return generateFakeHistoricalData();
+  }
+}
+
+function generateFakeStockInfo(symbol) {
+  console.log(`⚠️ Generating fake data for ${symbol}`);
+  
+  const basePrice = 50 + Math.random() * 100;
+  const change = (Math.random() - 0.5) * 10;
+  
+  return {
+    symbol: symbol,
+    name: stockDatabase.getCompanyName(symbol) || `${symbol} Company`,
+    price: basePrice,
+    change: change,
+    changePercent: (change / basePrice) * 100,
+    volume: Math.floor(Math.random() * 10000000),
+    marketCap: Math.floor(Math.random() * 1000000000000),
+    pe: 15 + Math.random() * 20,
+    beta: 0.8 + Math.random() * 0.8,
+    high52: basePrice + 20,
+    low52: basePrice - 20,
+    currency: 'USD'
+  };
+}
+
+function generateFakeHistoricalData() {
+  const data = [];
+  const today = new Date();
+  const basePrice = 100 + Math.random() * 100;
+  
+  for (let i = 89; i >= 0; i--) {
+    const date = new Date(today);
+    date.setDate(date.getDate() - i);
+    
+    const price = basePrice + (Math.random() - 0.5) * 20;
+    data.push({
+      date: date,
+      open: price + (Math.random() - 0.5) * 5,
+      high: price + Math.random() * 5,
+      low: price - Math.random() * 5,
+      close: price,
+      volume: Math.floor(Math.random() * 1000000)
+    });
+  }
+  
+  return data;
+}
+
+function calculateTechnicalIndicators(historicalData) {
+  if (!historicalData || historicalData.length < 20) {
+    return {
+      rsi: Math.random() * 100,
+      trend: ['BULLISH', 'BEARISH', 'NEUTRAL'][Math.floor(Math.random() * 3)],
+      sma20: 100 + Math.random() * 50,
+      volumeRatio: Math.random() * 2
+    };
+  }
+  
+  const closes = historicalData.map(d => d.close).slice(-20);
+  const sma20 = closes.reduce((a, b) => a + b) / closes.length;
+  
+  // Simple RSI calculation
+  const gains = [];
+  const losses = [];
+  for (let i = 1; i < closes.length; i++) {
+    const change = closes[i] - closes[i - 1];
+    if (change > 0) gains.push(change);
+    else losses.push(Math.abs(change));
+  }
+  
+  const avgGain = gains.length ? gains.reduce((a, b) => a + b) / gains.length : 0;
+  const avgLoss = losses.length ? losses.reduce((a, b) => a + b) / losses.length : 1;
+  const rs = avgGain / avgLoss;
+  const rsi = 100 - (100 / (1 + rs));
+  
+  const currentPrice = closes[closes.length - 1];
+  const trend = currentPrice > sma20 ? 'BULLISH' : currentPrice < sma20 * 0.95 ? 'BEARISH' : 'NEUTRAL';
+  
+  return {
+    rsi: rsi,
+    trend: trend,
+    sma20: sma20,
+    volumeRatio: Math.random() * 2
+  };
+}
+
+async function generateAnalysis(stockData, technical, newsData) {
+  // Fundamental score
+  let fundamentalScore = 50;
+  if (stockData.pe && stockData.pe < 20) fundamentalScore += 15;
+  if (stockData.pe && stockData.pe > 30) fundamentalScore -= 15;
+  if (stockData.marketCap > 100000000000) fundamentalScore += 10;
+  
+  // Technical score
+  let technicalScore = 50;
+  if (technical.rsi < 30) technicalScore += 20; // Oversold
+  if (technical.rsi > 70) technicalScore -= 20; // Overbought
+  if (technical.trend === 'BULLISH') technicalScore += 15;
+  if (technical.trend === 'BEARISH') technicalScore -= 15;
+  
+  // News score
+  const newsScore = newsData?.summary?.overallSentiment || 60;
+  
+  // Overall score
+  const overallScore = (fundamentalScore + technicalScore + newsScore) / 3;
+  
+  // Recommendation
+  let recommendation = 'HOLD';
+  if (overallScore > 70) recommendation = 'BUY';
+  if (overallScore > 80) recommendation = 'STRONG BUY';
+  if (overallScore < 40) recommendation = 'SELL';
+  if (overallScore < 30) recommendation = 'STRONG SELL';
+  
+  // Confidence
+  const confidence = Math.min(95, Math.max(30, overallScore + Math.random() * 20 - 10));
+  
+  // Reasoning
+  const reasoning = [];
+  if (stockData.pe) {
+    if (stockData.pe < 15) reasoning.push(`Lage P/E ratio (${stockData.pe.toFixed(1)}) suggereert waarde`);
+    else if (stockData.pe > 25) reasoning.push(`Hoge P/E ratio (${stockData.pe.toFixed(1)}) kan overgewaardeerd betekenen`);
+  }
+  
+  if (technical.rsi < 35) reasoning.push(`RSI van ${technical.rsi.toFixed(1)} toont oversold conditie`);
+  else if (technical.rsi > 65) reasoning.push(`RSI van ${technical.rsi.toFixed(1)} toont overbought conditie`);
+  
+  reasoning.push(`${technical.trend.toLowerCase()} markttrend`);
+  reasoning.push(`${newsScore > 60 ? 'Positief' : newsScore < 40 ? 'Negatief' : 'Neutraal'} nieuws sentiment (${newsScore}%)`);
+  
+  return {
+    recommendation,
+    confidence: Math.round(confidence),
+    reasoning: reasoning.slice(0, 5),
+    fundamentalScore: Math.round(fundamentalScore),
+    technicalScore: Math.round(technicalScore),
+    newsScore: Math.round(newsScore),
+    overallScore: Math.round(overallScore)
+  };
+}
+
+// ===== API ROUTES =====
+
+// Stock search
+app.get('/api/stocks/search', (req, res) => {
+  try {
+    const query = req.query.q;
+    if (!query || query.length < 2) {
+      return res.json({ suggestions: [] });
+    }
+    
+    const suggestions = stockDatabase.getStockSuggestions(query, 15);
+    res.json({ 
+      success: true, 
+      suggestions: suggestions,
+      query: query 
+    });
+  } catch (error) {
+    console.error('Stock search error:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: error.message 
+    });
+  }
+});
+
+// Get all available stocks
+app.get('/api/stocks/all', (req, res) => {
+  try {
+    const allStocks = stockDatabase.getAllAvailableStocks();
+    const stocksWithNames = allStocks.map(symbol => ({
+      symbol: symbol,
+      name: stockDatabase.getCompanyName(symbol),
+      displayName: `${stockDatabase.getCompanyName(symbol)} (${symbol})`
+    }));
+    
+    res.json({ 
+      success: true, 
+      stocks: stocksWithNames,
+      total: stocksWithNames.length 
+    });
+  } catch (error) {
+    console.error('All stocks error:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: error.message 
+    });
+  }
+});
+
+// Chart data
+app.get('/api/chart/:symbol', async (req, res) => {
+  try {
+    const symbol = req.params.symbol.toUpperCase();
+    console.log(`📊 Chart data request for: ${symbol}`);
+    
+    const historicalData = await getHistoricalData(symbol);
+    const technical = calculateTechnicalIndicators(historicalData);
+    
+    res.json({
+      symbol: symbol,
+      period: '3mo',
+      data: historicalData,
+      technical: technical,
+      dataPoints: historicalData.length,
+      source: 'Yahoo Finance Historical'
+    });
+    
+  } catch (error) {
+    console.error('Chart error:', error);
+    res.status(500).json({ 
+      error: 'Chart data niet beschikbaar',
+      message: error.message 
+    });
+  }
+});
+
+// Main analysis route
+app.post('/api/analyze', async (req, res) => {
+  try {
+    const { question } = req.body;
+    console.log('📋 Analyse vraag:', question);
+    
+    const symbol = extractStockSymbol(question);
+    
+    if (!symbol) {
+      const suggestions = stockDatabase.getStockSuggestions(question, 5);
+      const suggestionText = suggestions.length > 0 
+        ? `\n\n💡 Bedoelde je misschien: ${suggestions.map(s => s.displayName).join(', ')}?`
+        : '';
+      
+      return res.json({
+        answer: `🤔 Ik kon geen aandeel herkennen in "${question}". 
+
+📊 **Probeer bijvoorbeeld:**
+• "Analyseer Apple" of "AAPL analyse" 
+• "Wat vind je van Tesla?"
+• "Nike stock analyse"
+
+🔍 **Populaire aandelen:**
+• Tech: AAPL, MSFT, GOOGL, TSLA, NVDA
+• Consumer: KO, NKE, SBUX, MCD, DIS
+• Finance: JPM, V, MA, BAC
+• Crypto: BTC-USD, ETH-USD
+
+💰 **Totaal beschikbaar:** ${stockDatabase.getAllAvailableStocks().length}+ aandelen${suggestionText}`,
+        recommendation: "HOLD",
+        confidence: 0
+      });
+    }
+
+    console.log(`🔍 Analyzing: ${symbol}`);
+    
+    let stockData;
+    let source;
+    
+    // Try to get real stock data
+    try {
+      const result = await getStockData(symbol);
+      stockData = result.data;
+      source = result.source;
+    } catch (error) {
+      console.log(`⚠️ Using fallback data for ${symbol}: ${error.message}`);
+      stockData = generateFakeStockInfo(symbol);
+      source = 'Fallback Data';
+    }
+    
+    // Get news
+    let newsData;
+    try {
+      newsData = await newsService.getStockNews(symbol, stockData.name);
+      console.log(`📰 News: ${newsData.articles.length} artikelen`);
+    } catch (error) {
+      console.log('News service unavailable');
+      newsData = { 
+        articles: [],
+        summary: { overallSentiment: 60 }
+      };
+    }
+    
+    // Get historical data and calculate technicals
+    const historicalData = await getHistoricalData(symbol);
+    const technical = calculateTechnicalIndicators(historicalData);
+    
+    // Generate analysis
+    const analysis = await generateAnalysis(stockData, technical, newsData);
+    
+    // Log trade for AI learning
+    try {
+      const tradeId = tradeLogger.logTrade({
+        symbol: stockData.symbol,
+        name: stockData.name,
+        recommendation: analysis.recommendation,
+        confidence: analysis.confidence,
+        reasoning: analysis.reasoning,
+        currentPrice: stockData.price,
+        priceChange: stockData.change,
+        priceChangePercent: stockData.changePercent,
+        technicalData: technical,
+        newsData: newsData,
+        analysis: analysis,
+        source: source
+      });
+      console.log(`📊 Trade logged with ID: ${tradeId}`);
+    } catch (logError) {
+      console.error('Trade logging failed:', logError.message);
+    }
+    
+    // Build response
+    const response = {
+      answer: `📊 Complete analyse van ${stockData.name} (${symbol}):`,
+      symbol: symbol,
+      name: stockData.name,
+      currentPrice: stockData.price,
+      priceChange: stockData.change,
+      priceChangePercent: stockData.changePercent,
+      recommendation: analysis.recommendation,
+      confidence: analysis.confidence,
+      reasoning: analysis.reasoning,
+      analysis: {
+        fundamental_score: analysis.fundamentalScore,
+        technical_score: analysis.technicalScore,
+        news_sentiment_score: analysis.newsScore,
+        overall_score: analysis.overallScore
+      },
+      technicalData: {
+        rsi: technical.rsi,
+        trend: technical.trend,
+        sma20: technical.sma20,
+        volumeRatio: technical.volumeRatio
+      },
+      newsData: {
+        summary: newsData.summary,
+        topHeadlines: newsData.articles.slice(0, 5).map(article => ({
+          title: article.title,
+          sentiment: article.sentiment?.sentiment || 'neutral',
+          score: article.sentiment?.score || 50,
+          date: article.date,
+          source: article.source
+        }))
+      },
+      source: source
+    };
+
+    console.log(`📤 Sending response: ${stockData.name} - $${stockData.price} (${source})`);
+    res.json(response);
+    
+  } catch (error) {
+    console.error('❌ Analysis error:', error);
+    res.status(500).json({ 
+      error: 'Analyse mislukt',
+      message: error.message,
+      answer: "Sorry, er ging iets mis met de analyse."
+    });
+  }
+});
+
+// Trade performance endpoints
+app.get('/api/trades', (req, res) => {
+  try {
+    const trades = tradeLogger.getAllTrades();
+    res.json({ success: true, trades });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.get('/api/trades/pending', (req, res) => {
+  try {
+    const pendingTrades = tradeLogger.getPendingTrades();
+    res.json({ success: true, trades: pendingTrades });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.post('/api/trades/:tradeId/result', (req, res) => {
+  try {
+    const tradeId = req.params.tradeId;
+    const result = req.body;
+    
+    const updatedTrade = tradeLogger.updateTradeResult(tradeId, result);
+    res.json({ success: true, trade: updatedTrade });
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message });
+  }
+});
+
+app.get('/api/performance', (req, res) => {
+  try {
+    const performance = tradeLogger.getPerformanceMetrics();
+    res.json({ success: true, performance });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Manual position endpoints
+app.post('/api/trades/manual', (req, res) => {
+  try {
+    const {
+      symbol,
+      entryPrice,
+      quantity,
+      aiRecommendation,
+      aiConfidence,
+      tradeReason,
+      stopLoss,
+      targetPrice
+    } = req.body;
+
+    const manualTrade = {
+      symbol: symbol,
+      name: stockDatabase.getCompanyName(symbol) || symbol,
+      recommendation: aiRecommendation,
+      confidence: aiConfidence,
+      reasoning: [tradeReason],
+      currentPrice: entryPrice,
+      priceChange: 0,
+      priceChangePercent: 0,
+      technicalData: { rsi: null, trend: 'MANUAL', volumeRatio: null },
+      newsData: { summary: { overallSentiment: 50 } },
+      analysis: { fundamentalScore: 50, technicalScore: 50, newsScore: 50, overallScore: 50 },
+      source: 'MANUAL_ENTRY'
+    };
+
+    const tradeId = tradeLogger.logTrade(manualTrade);
+    
+    // Add manual entry specific data
+    const db = tradeLogger.loadDatabase();
+    const trade = db.trades.find(t => t.id === tradeId);
+    if (trade) {
+      trade.manualEntry = {
+        quantity: quantity,
+        stopLoss: stopLoss,
+        targetPrice: targetPrice,
+        entryMethod: 'MANUAL'
+      };
+      tradeLogger.saveDatabase(db);
+    }
+
+    res.json({ 
+      success: true, 
+      tradeId: tradeId,
+      message: 'Manual position logged successfully'
+    });
+  } catch (error) {
+    console.error('Manual trade logging error:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: error.message 
+    });
+  }
+});
+
+// Health check
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    yahooFinance: !!yahooFinance,
+    availableStocks: stockDatabase.getAllAvailableStocks().length
+  });
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log('🚀 AI Trading Server gestart!');
+  console.log(`📊 http://localhost:${PORT}`);
+  console.log(`💹 Yahoo Finance: ${yahooFinance ? '✅ Available' : '❌ Not Available'}`);
+  console.log(`📈 Stocks beschikbaar: ${stockDatabase.getAllAvailableStocks().length}`);
+  console.log('');
+  console.log('🎯 Ready voor echte stock analyse!');
+});
